@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MANDARINA — Torre de Control Logístico</title>
+    <title>MANDARINA - Torre de Control Logistico</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -12,13 +12,7 @@
             theme: {
                 extend: {
                     colors: {
-                        mandarina: {
-                            50: '#fff7ed',
-                            100: '#ffedd5',
-                            500: '#f97316',
-                            600: '#ea580c',
-                            DEFAULT: '#FF6B00',
-                        },
+                        mandarina: { DEFAULT: '#FF6B00' },
                         darkbase: {
                             900: '#0a0a0c',
                             800: '#121316',
@@ -33,7 +27,7 @@
     <!-- React & ReactDOM -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <!-- Babel para JSX -->
+    <!-- Babel -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -45,54 +39,44 @@
             background-color: #0a0a0c;
             color: #f8fafc;
             overflow: hidden;
+            margin: 0;
+            padding: 0;
         }
         .glow-orange {
             box-shadow: 0 0 50px -10px rgba(249, 115, 22, 0.15);
         }
-        /* Transiciones suaves entre slides */
-        .slide-enter {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        .slide-active {
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
     </style>
 </head>
-<body class="bg-darkbase-900 text-slate-100 h-screen w-screen flex flex-col justify-between select-none">
+<body class="bg-[#0a0a0c] text-slate-100 h-screen w-screen flex flex-col justify-between select-none">
 
     <div id="root" class="h-full w-full flex flex-col"></div>
 
     <script type="text/babel">
-        const { useState, useEffect, useRef } = React;
+        const { useState, useEffect } = React;
         const { 
-            ChevronLeft, ChevronRight, Package, TrendingUp, AlertTriangle, 
-            ShieldCheck, Cpu, CloudRain, Scale, Users, Layers, ArrowRight, 
-            Activity, Database, CheckCircle2, BarChart3, Globe, Zap, Target
+            ChevronLeft, ChevronRight, Activity, Cpu, CloudRain, 
+            ShieldCheck, CheckCircle2 
         } = LucideReact;
 
         const slides = [
             { id: 1, title: "Portada" },
-            { id: 2, title: "Producto Crítico" },
-            { id: 3, title: "El Desafío" },
-            { id: 4, title: "Diagnóstico del Entorno" },
-            { id: 5, title: "Presión Competitiva" },
+            { id: 2, title: "Producto Critico" },
+            { id: 3, title: "El Desafio" },
+            { id: 4, title: "Diagnostico del Entorno" },
+            { id: 5, title: "Presion Competitiva" },
             { id: 6, title: "FODA" },
             { id: 7, title: "La Oportunidad" },
-            { id: 8, title: "¿Qué hace Mandarina?" },
-            { id: 9, title: "Datos y Metodología" },
+            { id: 8, title: "Que hace Mandarina" },
+            { id: 9, title: "Datos y Metodologia" },
             { id: 10, title: "Resultado y Cierre" }
         ];
 
         function App() {
             const [currentSlide, setCurrentSlide] = useState(0);
 
-            // Navegación por teclado
             useEffect(() => {
                 const handleKeyDown = (e) => {
-                    if (e.key === 'ArrowRight' || e.key === 'Space') {
+                    if (e.key === 'ArrowRight' || e.key === ' ') {
                         nextSlide();
                     } else if (e.key === 'ArrowLeft') {
                         prevSlide();
@@ -117,11 +101,11 @@
             return (
                 <div className="h-full w-full flex flex-col justify-between p-6 md:p-12 relative overflow-hidden">
                     
-                    {/* Header Minimalista tipo Dashboard */}
+                    {/* Header */}
                     <header className="flex justify-between items-center z-10">
                         <div className="flex items-center gap-3">
                             <div className="w-3 h-3 rounded-full bg-orange-500 animate-pulse"></div>
-                            <span className="text-xs font-mono tracking-widest text-slate-400 uppercase">MANDARINA // TORRE DE CONTROL LOGÍSTICO</span>
+                            <span className="text-xs font-mono tracking-widest text-slate-400 uppercase">MANDARINA // TORRE DE CONTROL LOGISTICO</span>
                         </div>
                         <div className="flex items-center gap-4">
                             <span className="text-xs font-mono text-orange-400 bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20">
@@ -130,9 +114,9 @@
                         </div>
                     </header>
 
-                    {/* Contenedor Principal de Slides */}
-                    <main className="flex-1 flex items-center justify-center my-auto z-10 relative overflow-hidden">
-                        <div className="w-full max-w-6xl h-full flex items-center justify-center slide-active">
+                    {/* Contenido Principal */}
+                    <main className="flex-1 flex items-center justify-center my-auto z-10 relative">
+                        <div className="w-full max-w-6xl h-full flex items-center justify-center">
                             {currentSlide === 0 && <Slide01 />}
                             {currentSlide === 1 && <Slide02 />}
                             {currentSlide === 2 && <Slide03 />}
@@ -146,23 +130,20 @@
                         </div>
                     </main>
 
-                    {/* Footer / Controles de Navegación */}
+                    {/* Footer / Navegacion */}
                     <footer className="flex flex-col md:flex-row justify-between items-center gap-4 z-10 pt-4 border-t border-slate-800/60">
-                        {/* Barra de Progreso */}
-                        <div className="w-full md:w-1/3 bg-darkbase-700 h-1.5 rounded-full overflow-hidden">
+                        <div className="w-full md:w-1/3 bg-[#1a1c23] h-1.5 rounded-full overflow-hidden">
                             <div 
                                 className="bg-orange-500 h-full transition-all duration-500 ease-out"
                                 style={{ width: `${((currentSlide + 1) / slides.length) * 100}%` }}
                             ></div>
                         </div>
 
-                        {/* Botones de Navegación */}
                         <div className="flex items-center gap-3">
                             <button 
                                 onClick={prevSlide}
                                 disabled={currentSlide === 0}
-                                className="p-2.5 rounded-xl bg-darkbase-700 hover:bg-darkbase-600 disabled:opacity-30 disabled:cursor-not-allowed transition border border-slate-700 text-slate-200"
-                                title="Anterior (←)"
+                                className="p-2.5 rounded-xl bg-[#1a1c23] hover:bg-[#262933] disabled:opacity-30 disabled:cursor-not-allowed transition border border-slate-700 text-slate-200"
                             >
                                 <ChevronLeft size={20} />
                             </button>
@@ -180,8 +161,7 @@
                             <button 
                                 onClick={nextSlide}
                                 disabled={currentSlide === slides.length - 1}
-                                className="p-2.5 rounded-xl bg-darkbase-700 hover:bg-darkbase-600 disabled:opacity-30 disabled:cursor-not-allowed transition border border-slate-700 text-slate-200"
-                                title="Siguiente (→)"
+                                className="p-2.5 rounded-xl bg-[#1a1c23] hover:bg-[#262933] disabled:opacity-30 disabled:cursor-not-allowed transition border border-slate-700 text-slate-200"
                             >
                                 <ChevronRight size={20} />
                             </button>
@@ -191,84 +171,72 @@
             );
         }
 
-        // SLIDE 01 — PORTADA
         function Slide01() {
             return (
                 <div className="flex flex-col items-center text-center space-y-8 max-w-4xl mx-auto">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-mono tracking-wider uppercase">
-                        <Activity size={14} /> Proyecto Académico de Gestión Logística
+                        <Activity size={14} /> Proyecto Academico de Gestion Logistica
                     </div>
                     <div className="space-y-4">
                         <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight text-white">
                             MANDARINA
                         </h1>
                         <p className="text-2xl md:text-3xl font-light text-orange-500 tracking-wide">
-                            Torre de Control Logístico
+                            Torre de Control Logistico
                         </p>
                     </div>
                     <div className="pt-4 border-t border-slate-800 w-full max-w-md">
                         <p className="text-slate-400 font-medium tracking-wide">
-                            Planificación inteligente para <span className="text-white font-semibold">DORMEX</span>
+                            Planificacion inteligente para <span className="text-white font-semibold">DORMEX</span>
                         </p>
                     </div>
                 </div>
             );
         }
 
-        // SLIDE 02 — EL PRODUCTO CRÍTICO
         function Slide02() {
             return (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full max-w-5xl">
                     <div className="space-y-6">
-                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">01 // Análisis de Portafolio</span>
+                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">01 // Analisis de Portafolio</span>
                         <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white">DORMEX</h2>
                         <p className="text-slate-400 leading-relaxed">
-                            El activo estratégico principal que sostiene la operación comercial de la categoría agrícola.
+                            El activo estrategico principal que sostiene la operacion comercial de la categoria agricola.
                         </p>
                         <div className="flex gap-3 pt-2">
-                            <span className="px-4 py-2 bg-darkbase-700 border border-slate-700 rounded-xl font-mono text-sm text-slate-300">DORMEX 20</span>
-                            <span className="px-4 py-2 bg-darkbase-700 border border-slate-700 rounded-xl font-mono text-sm text-slate-300">DORMEX 200</span>
+                            <span className="px-4 py-2 bg-[#1a1c23] border border-slate-700 rounded-xl font-mono text-sm text-slate-300">DORMEX 20</span>
+                            <span className="px-4 py-2 bg-[#1a1c23] border border-slate-700 rounded-xl font-mono text-sm text-slate-300">DORMEX 200</span>
                         </div>
                     </div>
-                    <div className="bg-darkbase-800/80 border border-slate-800 p-8 rounded-3xl glow-orange flex flex-col justify-center items-center text-center space-y-4">
-                        <div className="text-7xl md:text-9xl font-black text-orange-500 tracking-tighter">
-                            74%
-                        </div>
-                        <p className="text-sm uppercase font-mono tracking-wider text-slate-400">
-                            Del valor vendido de su categoría
-                        </p>
+                    <div className="bg-[#121316] border border-slate-800 p-8 rounded-3xl glow-orange flex flex-col justify-center items-center text-center space-y-4">
+                        <div className="text-7xl md:text-9xl font-black text-orange-500 tracking-tighter">74%</div>
+                        <p className="text-sm uppercase font-mono tracking-wider text-slate-400">Del valor vendido de su categoria</p>
                         <div className="pt-4 border-t border-slate-700/50 w-full">
-                            <p className="text-xs text-orange-300 font-medium tracking-wide">
-                                Alta criticidad · Ventana agrícola acotada
-                            </p>
+                            <p className="text-xs text-orange-300 font-medium tracking-wide">Alta criticidad - Ventana agricola acotada</p>
                         </div>
                     </div>
                 </div>
             );
         }
 
-        // SLIDE 03 — EL DESAFÍO
         function Slide03() {
             return (
                 <div className="flex flex-col items-center text-center space-y-10 w-full max-w-5xl">
                     <div className="space-y-3">
-                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">02 // Operativa Logística</span>
+                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">02 // Operativa Logistica</span>
                         <h2 className="text-4xl md:text-5xl font-bold text-white">El problema no es vender.</h2>
                         <p className="text-xl md:text-2xl font-light text-slate-300 max-w-2xl mx-auto pt-2">
                             Es tener el producto correcto, en el lugar correcto, en el momento correcto.
                         </p>
                     </div>
-
-                    <div className="w-full bg-darkbase-800/60 border border-slate-800 p-6 md:p-8 rounded-3xl grid grid-cols-2 md:grid-cols-5 gap-4 items-center relative">
-                        {['DEMANDA', 'STOCK', 'BODEGA', 'TRANSPORTE', 'SUCURSAL'].map((step, idx, arr) => (
+                    <div className="w-full bg-[#121316] border border-slate-800 p-6 md:p-8 rounded-3xl grid grid-cols-2 md:grid-cols-5 gap-4 items-center relative">
+                        {['DEMANDA', 'STOCK', 'BODEGA', 'TRANSPORTE', 'SUCURSAL'].map((step, idx) => (
                             <div key={step} className="flex flex-col items-center relative">
-                                <div className={`w-full py-4 px-3 rounded-2xl text-center font-mono text-sm font-bold transition-all ${idx === 2 ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/20' : 'bg-darkbase-700 text-slate-300 border border-slate-700'}`}>
+                                <div className={`w-full py-4 px-3 rounded-2xl text-center font-mono text-sm font-bold ${idx === 2 ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/20' : 'bg-[#1a1c23] text-slate-300 border border-slate-700'}`}>
                                     {step}
                                 </div>
                                 {idx === 2 && (
-                                    <span className="absolute -bottom-8 text-[10px] font-mono text-orange-400 whitespace-nowrap">
-                                        ⚠️ Quiebre potencial
-                                    </span>
+                                    <span className="absolute -bottom-7 text-[10px] font-mono text-orange-400 whitespace-nowrap">Quiebre potencial</span>
                                 )}
                             </div>
                         ))}
@@ -277,31 +245,28 @@
             );
         }
 
-        // SLIDE 04 — DIAGNÓSTICO DEL ENTORNO
         function Slide04() {
             const blocks = [
-                { title: "TECNOLOGÍA", subtitle: "SAP + datos transaccionales", icon: Cpu },
-                { title: "CLIMA", subtitle: "Demanda sensible a condiciones agrícolas", icon: CloudRain },
-                { title: "REGULACIÓN", subtitle: "SUSPEL + almacenamiento de sustancias peligrosas", icon: ShieldCheck }
+                { title: "TECNOLOGIA", subtitle: "SAP + datos transaccionales", icon: Cpu },
+                { title: "CLIMA", subtitle: "Demanda sensible a condiciones agricolas", icon: CloudRain },
+                { title: "REGULACION", subtitle: "SUSPEL + almacenamiento de sustancias peligrosas", icon: ShieldCheck }
             ];
-
             return (
                 <div className="flex flex-col space-y-8 w-full max-w-5xl">
                     <div className="space-y-2">
                         <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">03 // Entorno Operativo</span>
-                        <h2 className="text-4xl font-bold text-white">¿Qué condiciona la operación?</h2>
+                        <h2 className="text-4xl font-bold text-white">¿Que condiciona la operacion?</h2>
                     </div>
-
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {blocks.map((b, i) => {
                             const IconComponent = b.icon;
                             return (
-                                <div key={i} className="bg-darkbase-800 border border-slate-800 p-8 rounded-3xl flex flex-col justify-between space-y-6 hover:border-orange-500/50 transition">
+                                <div key={i} className="bg-[#121316] border border-slate-800 p-8 rounded-3xl flex flex-col justify-between space-y-6">
                                     <div className="w-12 h-12 rounded-2xl bg-orange-500/10 text-orange-500 flex items-center justify-center">
                                         <IconComponent size={24} />
                                     </div>
                                     <div className="space-y-2">
-                                        <h3 className="text-lg font-bold text-white tracking-wide">{b.title}</h3>
+                                        <h3 className="text-lg font-bold text-white">{b.title}</h3>
                                         <p className="text-slate-400 text-sm leading-relaxed">{b.subtitle}</p>
                                     </div>
                                 </div>
@@ -312,24 +277,21 @@
             );
         }
 
-        // SLIDE 05 — PRESIÓN COMPETITIVA
         function Slide05() {
             const forces = [
                 { name: "PROVEEDORES", level: "Alto poder" },
                 { name: "CLIENTES", level: "Alto poder" },
                 { name: "COMPETENCIA", level: "Alta rivalidad" }
             ];
-
             return (
                 <div className="flex flex-col space-y-8 w-full max-w-5xl">
                     <div className="space-y-2">
                         <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">04 // Mercado y Competencia</span>
                         <h2 className="text-4xl font-bold text-white">Porter</h2>
                     </div>
-
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {forces.map((f, i) => (
-                            <div key={i} className="bg-darkbase-800 border border-slate-800 p-8 rounded-3xl flex flex-col justify-between space-y-6">
+                            <div key={i} className="bg-[#121316] border border-slate-800 p-8 rounded-3xl flex flex-col justify-between space-y-6">
                                 <span className="text-xs font-mono text-slate-500">Fuerza {i+1}</span>
                                 <div className="space-y-2">
                                     <h3 className="text-xl font-bold text-white">{f.name}</h3>
@@ -338,70 +300,64 @@
                             </div>
                         ))}
                     </div>
-
                     <div className="bg-orange-500/5 border border-orange-500/20 p-4 rounded-2xl text-center">
-                        <p className="text-sm text-orange-300 font-medium">
-                            Si falla la disponibilidad, el cliente puede cambiar de proveedor.
-                        </p>
+                        <p className="text-sm text-orange-300 font-medium">Si falla la disponibilidad, el cliente puede cambiar de proveedor.</p>
                     </div>
                 </div>
             );
         }
 
-        // SLIDE 06 — FODA
         function Slide06() {
             return (
                 <div className="flex flex-col space-y-6 w-full max-w-5xl">
-                    <div className="flex justify-between items-end">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                         <div className="space-y-2">
-                            <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">05 // Evaluación Estratégica</span>
+                            <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">05 // Evaluacion Estrategica</span>
                             <h2 className="text-4xl font-bold text-white">El potencial existe. Falta ordenarlo.</h2>
                         </div>
-                        {/* Comparación Destacada */}
-                        <div className="flex items-center gap-6 bg-darkbase-800 border border-slate-800 px-6 py-3 rounded-2xl">
+                        <div className="flex items-center gap-6 bg-[#121316] border border-slate-800 px-6 py-3 rounded-2xl">
                             <div className="text-center">
-                                <span className="text-2xl font-black text-green-400">3,82</span>
+                                <span className="text-2xl font-black text-green-400">3.82</span>
                                 <p className="text-[10px] font-mono text-slate-400 uppercase">Favorables</p>
                             </div>
                             <span className="text-slate-600 font-light text-xl">vs</span>
                             <div className="text-center">
-                                <span className="text-2xl font-black text-red-400">1,53</span>
+                                <span className="text-2xl font-black text-red-400">1.53</span>
                                 <p className="text-[10px] font-mono text-slate-400 uppercase">Desfavorables</p>
                             </div>
                         </div>
                     </div>
-
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="bg-darkbase-800/80 border border-slate-800 p-6 rounded-3xl space-y-3">
+                        <div className="bg-[#121316] border border-slate-800 p-6 rounded-3xl space-y-3">
                             <h3 className="text-sm font-mono text-orange-400 uppercase tracking-wider">FORTALEZAS</h3>
                             <ul className="text-sm text-slate-300 space-y-1 font-light">
-                                <li>• Cobertura</li>
-                                <li>• SAP</li>
-                                <li>• Experiencia VMI</li>
+                                <li>- Cobertura</li>
+                                <li>- SAP</li>
+                                <li>- Experiencia VMI</li>
                             </ul>
                         </div>
-                        <div className="bg-darkbase-800/80 border border-slate-800 p-6 rounded-3xl space-y-3">
+                        <div className="bg-[#121316] border border-slate-800 p-6 rounded-3xl space-y-3">
                             <h3 className="text-sm font-mono text-red-400 uppercase tracking-wider">DEBILIDADES</h3>
                             <ul className="text-sm text-slate-300 space-y-1 font-light">
-                                <li>• Datos manuales</li>
-                                <li>• Reposición no estandarizada</li>
-                                <li>• Fletes no consolidados</li>
+                                <li>- Datos manuales</li>
+                                <li>- Reposicion no estandarizada</li>
+                                <li>- Fletes no consolidados</li>
                             </ul>
                         </div>
-                        <div className="bg-darkbase-800/80 border border-slate-800 p-6 rounded-3xl space-y-3">
+                        <div className="bg-[#121316] border border-slate-800 p-6 rounded-3xl space-y-3">
                             <h3 className="text-sm font-mono text-blue-400 uppercase tracking-wider">OPORTUNIDADES</h3>
                             <ul className="text-sm text-slate-300 space-y-1 font-light">
-                                <li>• Automatización</li>
-                                <li>• Integración de datos</li>
-                                <li>• Planificación anticipada</li>
+                                <li>- Automatizacion</li>
+                                <li>- Integracion de datos</li>
+                                <li>- Planificacion anticipada</li>
                             </ul>
                         </div>
-                        <div className="bg-darkbase-800/80 border border-slate-800 p-6 rounded-3xl space-y-3">
+                        <div className="bg-[#121316] border border-slate-800 p-6 rounded-3xl space-y-3">
                             <h3 className="text-sm font-mono text-amber-400 uppercase tracking-wider">AMENAZAS</h3>
                             <ul className="text-sm text-slate-300 space-y-1 font-light">
-                                <li>• Clima</li>
-                                <li>• Regulación</li>
-                                <li>• Competencia</li>
+                                <li>- Clima</li>
+                                <li>- Regulacion</li>
+                                <li>- Competencia</li>
                             </ul>
                         </div>
                     </div>
@@ -409,101 +365,77 @@
             );
         }
 
-        // SLIDE 07 — LA OPORTUNIDAD
         function Slide07() {
-            const steps = ["DEBILIDADES", "TECNOLOGÍA", "ESTANDARIZACIÓN", "MANDARINA"];
+            const steps = ["DEBILIDADES", "TECNOLOGIA", "ESTANDARIZACION", "MANDARINA"];
             return (
                 <div className="flex flex-col items-center text-center space-y-10 w-full max-w-4xl">
                     <div className="space-y-2">
-                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">06 // Ruta Estratégica</span>
+                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">06 // Ruta Estrategica</span>
                         <h2 className="text-4xl md:text-5xl font-bold text-white">De la debilidad a la estrategia</h2>
                     </div>
-
                     <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-full">
                         {steps.map((st, idx) => (
                             <React.Fragment key={st}>
-                                <div className={`p-6 rounded-2xl w-full md:w-48 text-center font-mono text-sm font-bold border ${idx === 3 ? 'bg-orange-500 text-white border-orange-400 shadow-xl shadow-orange-500/20' : 'bg-darkbase-800 text-slate-300 border-slate-800'}`}>
+                                <div className={`p-6 rounded-2xl w-full md:w-48 text-center font-mono text-sm font-bold border ${idx === 3 ? 'bg-orange-500 text-white border-orange-400 shadow-xl shadow-orange-500/20' : 'bg-[#121316] text-slate-300 border-slate-800'}`}>
                                     {st}
                                 </div>
-                                {idx < steps.length - 1 && (
-                                    <div className="text-orange-500 font-bold rotate-90 md:rotate-0 my-2 md:my-0">↓</div>
-                                )}
+                                {idx < steps.length - 1 && <div className="text-orange-500 font-bold rotate-90 md:rotate-0 my-2 md:my-0">↓</div>}
                             </React.Fragment>
                         ))}
                     </div>
-
                     <div className="space-y-2 pt-4">
-                        <span className="inline-block px-4 py-1.5 rounded-full bg-orange-500/10 text-orange-400 font-mono text-xs border border-orange-500/20">
-                            Estrategia DO
-                        </span>
-                        <p className="text-lg text-slate-300 font-light">
-                            Digitalizar después de ordenar el proceso.
-                        </p>
+                        <span className="inline-block px-4 py-1.5 rounded-full bg-orange-500/10 text-orange-400 font-mono text-xs border border-orange-500/20">Estrategia DO</span>
+                        <p className="text-lg text-slate-300 font-light">Digitalizar despues de ordenar el proceso.</p>
                     </div>
                 </div>
             );
         }
 
-        // SLIDE 08 — ¿QUÉ HACE MANDARINA?
         function Slide08() {
-            const nodes = ["SAP", "Forecast", "Stock", "Demanda", "Bodega", "Transporte", "Reposición"];
+            const nodes = ["SAP", "Forecast", "Stock", "Demanda", "Bodega", "Transporte", "Reposicion"];
             return (
                 <div className="flex flex-col items-center text-center space-y-8 w-full max-w-5xl">
                     <div className="space-y-2">
-                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">07 // Solución Central</span>
+                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">07 // Solucion Central</span>
                         <h2 className="text-4xl md:text-5xl font-bold text-white">Una torre de control para DORMEX</h2>
                     </div>
-
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-3xl">
                         {nodes.map((n, i) => (
-                            <div key={i} className="bg-darkbase-800 border border-slate-800 p-4 rounded-2xl text-slate-300 font-mono text-xs tracking-wider flex items-center justify-center">
+                            <div key={i} className="bg-[#121316] border border-slate-800 p-4 rounded-2xl text-slate-300 font-mono text-xs tracking-wider flex items-center justify-center">
                                 {n}
                             </div>
                         ))}
                     </div>
-
                     <div className="w-full max-w-md bg-orange-500 text-white p-6 rounded-3xl shadow-xl shadow-orange-500/20 flex flex-col items-center justify-center space-y-2">
-                        <span className="text-xs font-mono tracking-widest uppercase opacity-80">Núcleo Central</span>
+                        <span className="text-xs font-mono tracking-widest uppercase opacity-80">Nucleo Central</span>
                         <h3 className="text-3xl font-extrabold tracking-tight">MANDARINA</h3>
                     </div>
-
-                    <p className="text-sm font-mono text-orange-300">
-                        Una decisión. Una fuente de información. Un proceso trazable.
-                    </p>
+                    <p className="text-sm font-mono text-orange-300">Una decision. Una fuente de informacion. Un proceso trazable.</p>
                 </div>
             );
         }
 
-        // SLIDE 09 — DATOS Y METODOLOGÍA
         function Slide09() {
-            const pipeline = [
-                "SAP", "Homologación", "Stock físico + proyectado", "Demanda", 
-                "Pallets", "Capacidad", "Costos", "DECISIÓN DE REPOSICIÓN"
-            ];
-            const tags = ["SAP", "Motor DORMEX", "Correos", "Bitácoras", "SAG", "ODEPA", "MINAGRI", "AlzChem"];
-
+            const pipeline = ["SAP", "Homologacion", "Stock fisico + proyectado", "Demanda", "Pallets", "Capacidad", "Costos", "DECISION DE REPOSICION"];
+            const tags = ["SAP", "Motor DORMEX", "Correos", "Bitacoras", "SAG", "ODEPA", "MINAGRI", "AlzChem"];
             return (
                 <div className="flex flex-col space-y-8 w-full max-w-5xl">
                     <div className="space-y-2">
-                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">08 // Pipeline Analítico</span>
-                        <h2 className="text-4xl font-bold text-white">De datos dispersos a una decisión</h2>
+                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">08 // Pipeline Analitico</span>
+                        <h2 className="text-4xl font-bold text-white">De datos dispersos a una decision</h2>
                     </div>
-
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                         {pipeline.map((p, i) => (
-                            <div key={i} className={`p-4 rounded-2xl font-mono text-xs flex items-center justify-center text-center border ${i === pipeline.length - 1 ? 'bg-orange-500 text-white border-orange-400 font-bold col-span-2 md:col-span-4' : 'bg-darkbase-800 text-slate-300 border-slate-800'}`}>
+                            <div key={i} className={`p-4 rounded-2xl font-mono text-xs flex items-center justify-center text-center border ${i === pipeline.length - 1 ? 'bg-orange-500 text-white border-orange-400 font-bold col-span-2 md:col-span-4' : 'bg-[#121316] text-slate-300 border-slate-800'}`}>
                                 {p}
                             </div>
                         ))}
                     </div>
-
                     <div className="pt-2">
-                        <span className="text-[10px] font-mono uppercase text-slate-500 tracking-wider block mb-2">Fuentes de Información</span>
+                        <span className="text-[10px] font-mono uppercase text-slate-500 tracking-wider block mb-2">Fuentes de Informacion</span>
                         <div className="flex flex-wrap gap-2">
                             {tags.map((t, i) => (
-                                <span key={i} className="px-3 py-1 bg-darkbase-800 border border-slate-800 rounded-full font-mono text-[11px] text-slate-400">
-                                    {t}
-                                </span>
+                                <span key={i} className="px-3 py-1 bg-[#121316] border border-slate-800 rounded-full font-mono text-[11px] text-slate-400">{t}</span>
                             ))}
                         </div>
                     </div>
@@ -511,44 +443,38 @@
             );
         }
 
-        // SLIDE 10 — RESULTADO Y CIERRE
         function Slide10() {
             const indicators = [
-                { val: "100%", label: "Método" },
+                { val: "100%", label: "Metodo" },
                 { val: "100%", label: "Datos y Sistemas" },
                 { val: "94%", label: "Almacenamiento" }
             ];
-
             const flow = ["REACTIVO", "ANTICIPADO", "ESTANDARIZADO", "TRAZABLE", "MEDIBLE"];
-
             return (
                 <div className="flex flex-col items-center text-center space-y-8 w-full max-w-5xl">
                     <div className="space-y-2">
-                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">09 // Resultados y Conclusión</span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">El problema está identificado.</h2>
+                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">09 // Resultados y Conclusion</span>
+                        <h2 className="text-4xl md:text-5xl font-bold text-white">El problema esta identificado.</h2>
                     </div>
-
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
                         {indicators.map((ind, i) => (
-                            <div key={i} className="bg-darkbase-800 border border-slate-800 p-6 rounded-3xl flex flex-col items-center justify-center space-y-2 glow-orange">
+                            <div key={i} className="bg-[#121316] border border-slate-800 p-6 rounded-3xl flex flex-col items-center justify-center space-y-2 glow-orange">
                                 <span className="text-5xl font-black text-orange-500 tracking-tighter">{ind.val}</span>
                                 <span className="text-xs font-mono uppercase text-slate-400 tracking-wider">{ind.label}</span>
                             </div>
                         ))}
                     </div>
-
                     <div className="flex flex-wrap justify-center items-center gap-2 text-xs font-mono text-slate-300 pt-2">
                         {flow.map((f, i) => (
                             <React.Fragment key={f}>
-                                <span className="px-3 py-1.5 bg-darkbase-800 border border-slate-800 rounded-xl">{f}</span>
+                                <span className="px-3 py-1.5 bg-[#121316] border border-slate-800 rounded-xl">{f}</span>
                                 {i < flow.length - 1 && <span className="text-orange-500">→</span>}
                             </React.Fragment>
                         ))}
                     </div>
-
                     <div className="pt-4 border-t border-slate-800 w-full space-y-2">
                         <h3 className="text-2xl font-bold text-white tracking-tight">MANDARINA</h3>
-                        <p className="text-slate-400 font-light">Transformar la gestión logística de DORMEX.</p>
+                        <p className="text-slate-400 font-light">Transformar la gestion logistica de DORMEX.</p>
                         <p className="text-xs font-mono text-orange-400 pt-2">Muchas gracias.</p>
                     </div>
                 </div>
