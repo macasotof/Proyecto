@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MANDARINA · Torre de Control Logístico</title>
+    <title>MANDARINA · Proyecto Integral</title>
     <style>
         :root {
             --primary: #10b981;
@@ -30,7 +30,7 @@
         header p { margin: 0.5rem 0 0; color: #9ca3af; }
         
         main {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
@@ -43,13 +43,13 @@
         }
         h2 { color: var(--dark); border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; }
         
-        /* Estilo para Acordeones / Desplegables de Matrices */
+        /* Estilo para los botones desplegables de matrices */
         details {
             background: #f3f4f6;
             border: 1px solid var(--border);
             border-radius: 6px;
-            padding: 1rem;
-            margin-top: 1.5rem;
+            padding: 0.8rem 1rem;
+            margin-top: 1rem;
         }
         summary {
             font-weight: bold;
@@ -64,12 +64,12 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 1rem;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             background: white;
         }
         table.matrix-table th, table.matrix-table td {
             border: 1px solid var(--border);
-            padding: 0.75rem;
+            padding: 0.6rem;
             text-align: left;
         }
         table.matrix-table th {
@@ -90,107 +90,147 @@
 <body>
 
     <header>
-        <h1>MANDARINA · Torre de Control Logístico</h1>
-        <p>INACAP La Granja · Ingeniería en Gestión Logística | Martínez y Valdivieso S.A.</p>
+        <div>
+            <h1>MANDARINA · Proyecto Integral</h1>
+            <p>INACAP La Granja · Ingeniería en Gestión Logística</p>
+        </div>
     </header>
 
     <main>
-        <!-- 1.1.5.1 Presentación -->
+
+        <!-- 1.1.5.1 Presentación Institucional -->
         <section>
             <span>1.1.5.1 Presentación Institucional</span>
             <h2>Martínez & Valdivieso S.A.</h2>
-            <p>Torre de Control Logístico y optimización de reabastecimiento para <strong>DORMEX 20 y DORMEX 200</strong> (NS Agro). Proyecto enfocado en estandarizar el proceso logístico crítico de la temporada de brotación en frutales.</p>
+            <p>
+                Torre de Control Logístico y optimización de reabastecimiento para <strong>DORMEX 20 y DORMEX 200</strong> (NS Agro).
+            </p>
         </section>
 
-        <!-- 1.1.5.2 Diagnóstico -->
+        <!-- 1.1.5.2 Situación Actual -->
         <section>
             <span>1.1.5.2 Situación Actual</span>
             <h2>Diagnóstico PESTEL, Porter y FODA</h2>
-            <p><strong>PESTEL:</strong> Factores tecnológicos (descargas manuales en SAP) y normativos (DS 43 / SUSPEL) con mayor impacto.</p>
-            <p><strong>Porter:</strong> Alto poder de proveedores y clientes; la disponibilidad define la venta.</p>
-            <p><strong>FODA Cuantificado:</strong> Balance favorable de <strong>3.82</strong> frente a <strong>1.53</strong> en factores desfavorables.</p>
+            <div>
+                <p>
+                    <strong>Tecnológico:</strong> SAP disponible pero con cruces manuales.<br>
+                    <strong>Legal:</strong> Rigurosa normativa SUSPEL en sustancias peligrosas.
+                </p>
+                <p>
+                    <strong>Cinco Fuerzas Porter:</strong> Alto poder de negociación y alta rivalidad en el sector. <strong>La disponibilidad de inventario define directamente el cierre de la venta</strong>.
+                </p>
+                <p>
+                    <strong>Ratio FODA:</strong> 3.82 <span>vs</span> 1.53 (Factores favorables superan las debilidades operativas internas).
+                </p>
+            </div>
 
-            <!-- Desplegable para Matrices PESTEL y Porter -->
+            <!-- Enlace desplegable para ver las matrices PESTEL y Porter completas -->
             <details>
-                <summary>Ver detalle de análisis PESTEL y Porter</summary>
+                <summary>Ver detalle de Matrices PESTEL y Porter</summary>
                 <table class="matrix-table">
                     <tr>
-                        <th>Dimensión / Fuerza</th>
+                        <th>Análisis / Dimensión</th>
                         <th>Evidencia Clave</th>
-                        <th>Implicación Logística / Impacto</th>
+                        <th>Implicación Logística</th>
                     </tr>
                     <tr>
                         <td><strong>PESTEL - Tecnológico</strong></td>
-                        <td>SAP disponible, pero planificación requiere limpieza manual.</td>
-                        <td>Oportunidad de automatizar alertas y cálculos (Impacto: 5/5).</td>
+                        <td>SAP disponible, pero el proceso DORMEX requiere limpieza y cruces manuales.</td>
+                        <td>Oportunidad de integrar datos y automatizar alertas (Impacto: 5/5).</td>
                     </tr>
                     <tr>
-                        <td><strong>PESTEL - Legal/Sanitario</strong></td>
-                        <td>DS 43 regula sustancias peligrosas (SUSPEL).</td>
-                        <td>Capacidad de bodega es una restricción estricta de cumplimiento (Impacto: 5/5).</td>
+                        <td><strong>PESTEL - Legal y Sanitario</strong></td>
+                        <td>DS 43 regula sustancias peligrosas y capacidad SUSPEL.</td>
+                        <td>La capacidad de bodega es una restricción estricta de cumplimiento (Impacto: 5/5).</td>
                     </tr>
                     <tr>
-                        <td><strong>Porter - Proveedores</strong></td>
-                        <td>DORMEX es importado de AlzChem (Alemania).</td>
-                        <td>Poder alto (4.0); temporada corta obliga a proteger inventario.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Porter - Clientes & Rivalidad</strong></td>
-                        <td>Alta exigencia de entrega en ventana estricta.</td>
-                        <td>Poder alto (4.0) y Rivalidad alta (4.0); el quiebre deriva en la competencia.</td>
+                        <td><strong>Porter - Proveedores & Clientes</strong></td>
+                        <td>DORMEX importado (AlzChem); clientes exigen entrega en ventana estricta.</td>
+                        <td>Poder alto (4.0). Si fallamos en disponibilidad, compran a la competencia.</td>
                     </tr>
                 </table>
             </details>
         </section>
 
-        <!-- 1.1.5.3 Estrategia -->
+        <!-- 1.1.5.3 Matriz de Confrontación -->
         <section>
             <span>1.1.5.3 Matriz de Confrontación</span>
             <h2>Estrategia Priorizada: DO1 + DO2 + FO1</h2>
-            <p>"Formalizar y estandarizar el método logístico antes de su completa automatización digital."</p>
+            <div>
+                <p>
+                    &quot;Formalizar y estandarizar el método logístico antes de su completa automatización digital.&quot;
+                </p>
+            </div>
 
-            <!-- Desplegable para Matriz de Confrontación y SFAS -->
+            <!-- Enlace desplegable para ver la Matriz de Confrontación -->
             <details>
-                <summary>Ver Matriz de Confrontación Estratégica (FO, FA, DO, DA)</summary>
+                <summary>Ver detalle de la Matriz de Confrontación Estratégica</summary>
                 <table class="matrix-table">
                     <tr>
-                        <th>Cuadrante Estratégico</th>
-                        <th>Definición de la Estrategia</th>
+                        <th>Estrategia</th>
+                        <th>Descripción operativa</th>
                     </tr>
                     <tr>
                         <td><strong>FO1 & FO2</strong></td>
-                        <td>Convertir el prototipo Motor DORMEX y SAP en una Torre de Control conectada, usando la red de operadores para elevar la disponibilidad.</td>
+                        <td>Convertir el Motor DORMEX y SAP en una Torre de Control conectada usando la experiencia VMI.</td>
                     </tr>
                     <tr>
                         <td><strong>DO1 & DO2 (Priorizada)</strong></td>
-                        <td>Automatizar integración SAP-forecast, estandarizar una sola fórmula de necesidad/stock y comparar capacidad de camión/rampla antes de liberar movimientos.</td>
+                        <td>Automatizar integración SAP-forecast, estandarizar fórmula de necesidad y comparar capacidad de camión/rampla antes de liberar movimientos.</td>
                     </tr>
                     <tr>
                         <td><strong>DA1 & DA2</strong></td>
-                        <td>Formalizar reglas de reprogramación de clientes y límites dinámicos de inventario para evitar sobrestock y ocupación innecesaria SUSPEL.</td>
+                        <td>Formalizar reprogramaciones de clientes y límites dinámicos para proteger posiciones SUSPEL.</td>
                     </tr>
                 </table>
             </details>
         </section>
 
-        <!-- 1.1.5.4 Metodología -->
+        <!-- 1.1.5.4 Metodología de Estudio -->
         <section>
             <span>1.1.5.4 Metodología de Estudio</span>
             <h2>Enfoque, Fuentes y Procedimiento</h2>
-            <p><strong>Enfoque:</strong> Aplicado, descriptivo y analítico (cruzando variables cuantitativas como stock, pallets y costos con observación cualitativa).</p>
-            <p><strong>Fuentes Primarias:</strong> SAP (ZSD013, ZMM005, ZSD026), Motor DORMEX, bitácoras y correos internos.</p>
-            <p><strong>Fuentes Secundarias:</strong> ODEPA, SAG, MINAGRI, Banco Central y AlzChem.</p>
+            <div>
+                <p>
+                    <strong>Enfoque:</strong> Estudio aplicado, descriptivo y analítico que cruza variables cuantitativas (stock, pallets, costos) con observación cualitativa.
+                </p>
+                <p>
+                    <strong>Fuentes Primarias:</strong> SAP (ZSD013, ZMM005, ZSD026), Motor DORMEX, bitácoras.<br>
+                    <strong>Fuentes Secundarias:</strong> ODEPA, SAG, MINAGRI, AlzChem.
+                </p>
+                <p>
+                    <strong>Procedimiento:</strong> Homologación de datos, distinción de stock físico/proyectado, cálculo de paletizaje y dimensionamiento de flotas de transporte.
+                </p>
+            </div>
         </section>
 
-        <!-- 1.1.5.5 Conclusiones -->
+        <!-- 1.1.5.5 Conclusiones del Diagnóstico -->
         <section>
             <span>1.1.5.5 Conclusiones del Diagnóstico</span>
             <h2>Factibilidad y Cierre del Proyecto</h2>
-            <p>Se valida la factibilidad técnica de <strong>MANDARINA</strong> para migrar hacia una gestión anticipada, estandarizada y trazable.</p>
-            
-            <!-- Desplegable para Ishikawa / Criticidad de Causas -->
+
+            <div>
+                <div>
+                    <div><strong>100%</strong></div>
+                    <div>Criticidad en Método y Sistemas de Datos</div>
+                </div>
+                <div>
+                    <div><strong>74%</strong></div>
+                    <div>Participación de DORMEX en su segmento</div>
+                </div>
+                <div>
+                    <div><strong>94%</strong></div>
+                    <div>Criticidad en Gestión de Almacenamiento</div>
+                </div>
+            </div>
+
+            <p style="margin-top: 1.5rem;">
+                Se valida la factibilidad técnica de <strong>MANDARINA</strong> para migrar desde una operación reactiva hacia un modelo de previsión estandarizado, trazable y altamente competitivo.
+            </p>
+
+            <!-- Enlace desplegable para ver la Criticidad de Causas (Ishikawa) -->
             <details>
-                <summary>Ver Priorización Ponderada de Causas Raíz (Ishikawa)</summary>
+                <summary>Ver detalle de Criticidad Ponderada de Causas (Ishikawa)</summary>
                 <table class="matrix-table">
                     <tr>
                         <th>Familia Causal</th>
@@ -198,43 +238,39 @@
                         <th>Exposición (30%)</th>
                         <th>Brecha (30%)</th>
                         <th>Criticidad Ponderada</th>
-                        <th>Participación Relativa</th>
                     </tr>
                     <tr>
                         <td><strong>Método</strong></td>
                         <td>5</td>
                         <td>5</td>
                         <td>5</td>
-                        <td>100%</td>
-                        <td>18,73%</td>
+                        <td><strong>100%</strong></td>
                     </tr>
                     <tr>
                         <td><strong>Datos y Sistemas</strong></td>
                         <td>5</td>
                         <td>5</td>
                         <td>5</td>
-                        <td>100%</td>
-                        <td>18,73%</td>
+                        <td><strong>100%</strong></td>
                     </tr>
                     <tr>
                         <td><strong>Almacenamiento</strong></td>
                         <td>5</td>
                         <td>4</td>
                         <td>5</td>
-                        <td>94%</td>
-                        <td>17,60%</td>
+                        <td><strong>94%</strong></td>
                     </tr>
                     <tr>
                         <td><strong>Transporte / Coordinación / Clientes</strong></td>
                         <td>4</td>
                         <td>4</td>
                         <td>4</td>
-                        <td>80%</td>
-                        <td>14,98% c/u</td>
+                        <td><strong>80% c/u</strong></td>
                     </tr>
                 </table>
             </details>
         </section>
+
     </main>
 
     <footer>
