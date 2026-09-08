@@ -3,326 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MANDARINA — Torre de Control Logístico | Proyecto Integral</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>MANDARINA · Torre de Control Logístico</title>
     <style>
+        :root {
+            --primary: #10b981;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --border: #e5e7eb;
+        }
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #03060a;
-            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
         }
-        .slide {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-            transform: scale(0.98);
-            background-size: cover;
-            background-position: center;
+        header {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
         }
-        .slide.active {
-            opacity: 1;
-            pointer-events: auto;
-            transform: scale(1);
-            z-index: 10;
+        header h1 { margin: 0; font-size: 2.2rem; color: var(--primary); }
+        header p { margin: 0.5rem 0 0; color: #9ca3af; }
+        
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
-        /* Fondos con alta definición y filtro oscuro corporativo */
-        .bg-slide-1 { background-image: linear-gradient(to bottom, rgba(3, 6, 10, 0.82), rgba(3, 6, 10, 0.94)), url('https://images.unsplash.com/photo-1592982537447-6f233ba3eb46?q=80&w=1600&auto=format&fit=crop'); }
-        .bg-slide-2 { background-image: linear-gradient(to bottom, rgba(3, 6, 10, 0.85), rgba(3, 6, 10, 0.95)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1600&auto=format&fit=crop'); }
-        .bg-slide-3 { background-image: linear-gradient(to bottom, rgba(3, 6, 10, 0.85), rgba(3, 6, 10, 0.95)), url('https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1600&auto=format&fit=crop'); }
-        .bg-slide-4 { background-image: linear-gradient(to bottom, rgba(3, 6, 10, 0.85), rgba(3, 6, 10, 0.95)), url('https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1600&auto=format&fit=crop'); }
-        .bg-slide-5 { background-image: linear-gradient(to bottom, rgba(3, 6, 10, 0.82), rgba(3, 6, 10, 0.94)), url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1600&auto=format&fit=crop'); }
-
-        .glass-card {
-            background: rgba(13, 20, 32, 0.8);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        section {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
-        .glass-card:hover {
-            border-color: rgba(52, 211, 153, 0.5);
-            transform: translateY(-4px);
-            box-shadow: 0 30px 60px rgba(52, 211, 153, 0.1);
+        h2 { color: var(--dark); border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; }
+        
+        /* Estilo para Acordeones / Desplegables de Matrices */
+        details {
+            background: #f3f4f6;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1rem;
+            margin-top: 1.5rem;
         }
-        .glow-accent {
-            text-shadow: 0 0 25px rgba(52, 211, 153, 0.5);
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #047857;
+            outline: none;
+        }
+        summary:hover {
+            color: #065f46;
+        }
+        table.matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            background: white;
+        }
+        table.matrix-table th, table.matrix-table td {
+            border: 1px solid var(--border);
+            padding: 0.75rem;
+            text-align: left;
+        }
+        table.matrix-table th {
+            background-color: #e5e7eb;
+            color: var(--dark);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            background: white;
         }
     </style>
 </head>
-<body class="text-slate-100 min-h-screen select-none flex flex-col justify-between p-6 md:p-12 relative">
+<body>
 
-    <!-- CABECERA GLOBAL INTERACTIVA -->
-    <header class="z-20 border-b border-slate-800/80 pb-4 relative">
-        <div class="flex justify-between items-center mb-3">
-            <div class="flex items-center space-x-3">
-                <div class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_15px_#34d399]"></div>
-                <div>
-                    <h1 class="text-xs font-bold tracking-[0.25em] text-slate-200 uppercase">MANDARINA · Proyecto Integral</h1>
-                    <p class="text-[10px] text-slate-400 tracking-wider">INACAP La Granja · Ingeniería en Gestión Logística</p>
-                </div>
-            </div>
-            
-            <!-- Selector Rápido de Diapositivas (Clickeable) -->
-            <div class="flex items-center space-x-2 bg-slate-900/80 px-3 py-1.5 rounded-full border border-slate-800">
-                <span class="text-[10px] text-slate-400 mr-2 hidden md:inline">Ir a:</span>
-                <button onclick="goToSlide(0)" id="dot-0" class="w-6 h-6 rounded-full text-xs font-mono transition bg-emerald-500 text-slate-950 font-bold">1</button>
-                <button onclick="goToSlide(1)" id="dot-1" class="w-6 h-6 rounded-full text-xs font-mono transition bg-slate-800 text-slate-300 hover:bg-slate-700">2</button>
-                <button onclick="goToSlide(2)" id="dot-2" class="w-6 h-6 rounded-full text-xs font-mono transition bg-slate-800 text-slate-300 hover:bg-slate-700">3</button>
-                <button onclick="goToSlide(3)" id="dot-3" class="w-6 h-6 rounded-full text-xs font-mono transition bg-slate-800 text-slate-300 hover:bg-slate-700">4</button>
-                <button onclick="goToSlide(4)" id="dot-4" class="w-6 h-6 rounded-full text-xs font-mono transition bg-slate-800 text-slate-300 hover:bg-slate-700">5</button>
-            </div>
-        </div>
-        <!-- Barra de Progreso Dinámica -->
-        <div class="w-full bg-slate-800/60 h-1.5 rounded-full overflow-hidden">
-            <div id="progress-bar" class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full transition-all duration-500 ease-out shadow-[0_0_10px_#34d399]" style="width: 20%;"></div>
-        </div>
+    <header>
+        <h1>MANDARINA · Torre de Control Logístico</h1>
+        <p>INACAP La Granja · Ingeniería en Gestión Logística | Martínez y Valdivieso S.A.</p>
     </header>
 
-    <!-- CONTENEDOR DE DIAPOSITIVAS -->
-    <main class="flex-grow flex items-center justify-center relative z-10 my-auto">
+    <main>
+        <!-- 1.1.5.1 Presentación -->
+        <section>
+            <span>1.1.5.1 Presentación Institucional</span>
+            <h2>Martínez & Valdivieso S.A.</h2>
+            <p>Torre de Control Logístico y optimización de reabastecimiento para <strong>DORMEX 20 y DORMEX 200</strong> (NS Agro). Proyecto enfocado en estandarizar el proceso logístico crítico de la temporada de brotación en frutales.</p>
+        </section>
 
-        <!-- SLIDE 1: Portada -->
-        <div class="slide active bg-slide-1 items-center justify-center p-6">
-            <div class="glass-card rounded-2xl p-8 md:p-12 relative overflow-hidden max-w-4xl w-full">
-                <div class="absolute -right-20 -top-20 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"></div>
-                
-                <span class="inline-block py-1 px-3 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-6 border border-emerald-500/20">
-                    1.1.5.1 Presentación Institucional
-                </span>
-                
-                <h2 class="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-white">
-                    Martínez <span class="text-slate-400 font-light">&amp;</span> Valdivieso<span class="text-emerald-400">.</span>
-                </h2>
-                
-                <p class="text-lg md:text-xl text-slate-300 font-light max-w-2xl mb-8 leading-relaxed">
-                    Torre de Control Logístico y optimización de reabastecimiento para <strong class="text-white font-medium">DORMEX 20 y DORMEX 200</strong> (NS Agro).
-                </p>
+        <!-- 1.1.5.2 Diagnóstico -->
+        <section>
+            <span>1.1.5.2 Situación Actual</span>
+            <h2>Diagnóstico PESTEL, Porter y FODA</h2>
+            <p><strong>PESTEL:</strong> Factores tecnológicos (descargas manuales en SAP) y normativos (DS 43 / SUSPEL) con mayor impacto.</p>
+            <p><strong>Porter:</strong> Alto poder de proveedores y clientes; la disponibilidad define la venta.</p>
+            <p><strong>FODA Cuantificado:</strong> Balance favorable de <strong>3.82</strong> frente a <strong>1.53</strong> en factores desfavorables.</p>
 
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-6 pt-6 border-t border-slate-800">
-                    <div>
-                        <div class="text-[10px] text-slate-400 uppercase tracking-widest mb-1">Fundación Holding</div>
-                        <div class="text-xl font-semibold text-white">1992 (Chile)</div>
-                    </div>
-                    <div>
-                        <div class="text-[10px] text-slate-400 uppercase tracking-widest mb-1">Ramo Académico</div>
-                        <div class="text-sm font-semibold text-emerald-400 mt-1">Proyecto Integral</div>
-                    </div>
-                    <div class="col-span-2 md:col-span-1">
-                        <div class="text-[10px] text-slate-400 uppercase tracking-widest mb-1">Autores</div>
-                        <div class="text-xs font-medium text-slate-200">Macarena Soto · Maximiliano Nahuel</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <!-- Desplegable para Matrices PESTEL y Porter -->
+            <details>
+                <summary>Ver detalle de análisis PESTEL y Porter</summary>
+                <table class="matrix-table">
+                    <tr>
+                        <th>Dimensión / Fuerza</th>
+                        <th>Evidencia Clave</th>
+                        <th>Implicación Logística / Impacto</th>
+                    </tr>
+                    <tr>
+                        <td><strong>PESTEL - Tecnológico</strong></td>
+                        <td>SAP disponible, pero planificación requiere limpieza manual.</td>
+                        <td>Oportunidad de automatizar alertas y cálculos (Impacto: 5/5).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PESTEL - Legal/Sanitario</strong></td>
+                        <td>DS 43 regula sustancias peligrosas (SUSPEL).</td>
+                        <td>Capacidad de bodega es una restricción estricta de cumplimiento (Impacto: 5/5).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Porter - Proveedores</strong></td>
+                        <td>DORMEX es importado de AlzChem (Alemania).</td>
+                        <td>Poder alto (4.0); temporada corta obliga a proteger inventario.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Porter - Clientes & Rivalidad</strong></td>
+                        <td>Alta exigencia de entrega en ventana estricta.</td>
+                        <td>Poder alto (4.0) y Rivalidad alta (4.0); el quiebre deriva en la competencia.</td>
+                    </tr>
+                </table>
+            </details>
+        </section>
 
-        <!-- SLIDE 2: Diagnóstico -->
-        <div class="slide bg-slide-2 items-center justify-center p-6">
-            <div class="glass-card rounded-2xl p-8 md:p-10 max-w-4xl w-full">
-                <span class="inline-block py-1 px-3 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-4 border border-emerald-500/20">
-                    1.1.5.2 Situación Actual
-                </span>
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">Diagnóstico PESTEL, Porter y FODA</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-slate-900/70 p-5 rounded-xl border border-slate-800/80 hover:border-emerald-500/40 transition">
-                        <h3 class="text-emerald-400 font-semibold text-xs uppercase tracking-wider mb-3">Análisis PESTEL</h3>
-                        <p class="text-xs text-slate-300 leading-relaxed space-y-2">
-                            <strong class="text-white">Tecnológico:</strong> SAP disponible pero con cruces manuales.<br><br>
-                            <strong class="text-white">Legal:</strong> Rigurosa normativa SUSPEL en sustancias peligrosas.
-                        </p>
-                    </div>
-                    <div class="bg-slate-900/70 p-5 rounded-xl border border-slate-800/80 hover:border-emerald-500/40 transition">
-                        <h3 class="text-emerald-400 font-semibold text-xs uppercase tracking-wider mb-3">Cinco Fuerzas Porter</h3>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            Alto poder de negociación y alta rivalidad en el sector. <strong class="text-white">La disponibilidad de inventario define directamente el cierre de la venta</strong>.
-                        </p>
-                    </div>
-                    <div class="bg-slate-900/70 p-5 rounded-xl border border-slate-800/80 hover:border-emerald-500/40 transition flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-emerald-400 font-semibold text-xs uppercase tracking-wider mb-2">Ratio FODA</h3>
-                            <div class="text-3xl font-bold text-white glow-accent my-2">3.82 <span class="text-xs text-slate-400 font-normal">vs</span> 1.53</div>
-                        </div>
-                        <p class="text-[11px] text-slate-400">Factores favorables superan las debilidades operativas internas.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- 1.1.5.3 Estrategia -->
+        <section>
+            <span>1.1.5.3 Matriz de Confrontación</span>
+            <h2>Estrategia Priorizada: DO1 + DO2 + FO1</h2>
+            <p>"Formalizar y estandarizar el método logístico antes de su completa automatización digital."</p>
 
-        <!-- SLIDE 3: Estrategia -->
-        <div class="slide bg-slide-3 items-center justify-center p-6">
-            <div class="glass-card rounded-2xl p-8 md:p-10 max-w-4xl w-full">
-                <span class="inline-block py-1 px-3 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-4 border border-emerald-500/20">
-                    1.1.5.3 Matriz de Confrontación
-                </span>
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">Estrategia Priorizada: DO1 + DO2 + FO1</h2>
-                
-                <div class="bg-emerald-500/10 border-l-4 border-emerald-400 p-5 rounded-r-xl mb-6">
-                    <p class="text-sm text-slate-200 font-medium">
-                        "Formalizar y estandarizar el método logístico antes de su completa automatización digital."
-                    </p>
-                </div>
+            <!-- Desplegable para Matriz de Confrontación y SFAS -->
+            <details>
+                <summary>Ver Matriz de Confrontación Estratégica (FO, FA, DO, DA)</summary>
+                <table class="matrix-table">
+                    <tr>
+                        <th>Cuadrante Estratégico</th>
+                        <th>Definición de la Estrategia</th>
+                    </tr>
+                    <tr>
+                        <td><strong>FO1 & FO2</strong></td>
+                        <td>Convertir el prototipo Motor DORMEX y SAP en una Torre de Control conectada, usando la red de operadores para elevar la disponibilidad.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DO1 & DO2 (Priorizada)</strong></td>
+                        <td>Automatizar integración SAP-forecast, estandarizar una sola fórmula de necesidad/stock y comparar capacidad de camión/rampla antes de liberar movimientos.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DA1 & DA2</strong></td>
+                        <td>Formalizar reglas de reprogramación de clientes y límites dinámicos de inventario para evitar sobrestock y ocupación innecesaria SUSPEL.</td>
+                    </tr>
+                </table>
+            </details>
+        </section>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 flex items-start space-x-3">
-                        <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">01</div>
-                        <p class="text-xs text-slate-300 leading-relaxed">Estandarización formal del proceso de planificación de reabastecimiento DORMEX.</p>
-                    </div>
-                    <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 flex items-start space-x-3">
-                        <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">02</div>
-                        <p class="text-xs text-slate-300 leading-relaxed">Integración automatizada entre los datos transaccionales de SAP y el forecast.</p>
-                    </div>
-                    <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 flex items-start space-x-3">
-                        <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">03</div>
-                        <p class="text-xs text-slate-300 leading-relaxed">Consolidación eficiente de fletes, ventanas de transporte y capacidad de bodega.</p>
-                    </div>
-                    <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 flex items-start space-x-3">
-                        <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">04</div>
-                        <p class="text-xs text-slate-300 leading-relaxed">MANDARINA opera como habilitador tecnológico trazable y medible.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- 1.1.5.4 Metodología -->
+        <section>
+            <span>1.1.5.4 Metodología de Estudio</span>
+            <h2>Enfoque, Fuentes y Procedimiento</h2>
+            <p><strong>Enfoque:</strong> Aplicado, descriptivo y analítico (cruzando variables cuantitativas como stock, pallets y costos con observación cualitativa).</p>
+            <p><strong>Fuentes Primarias:</strong> SAP (ZSD013, ZMM005, ZSD026), Motor DORMEX, bitácoras y correos internos.</p>
+            <p><strong>Fuentes Secundarias:</strong> ODEPA, SAG, MINAGRI, Banco Central y AlzChem.</p>
+        </section>
 
-        <!-- SLIDE 4: Metodología -->
-        <div class="slide bg-slide-4 items-center justify-center p-6">
-            <div class="glass-card rounded-2xl p-8 md:p-10 max-w-4xl w-full">
-                <span class="inline-block py-1 px-3 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-4 border border-emerald-500/20">
-                    1.1.5.4 Metodología de Estudio
-                </span>
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">Enfoque, Fuentes y Procedimiento</h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-slate-900/70 p-5 rounded-xl border border-slate-800">
-                        <h3 class="text-emerald-400 font-semibold text-xs uppercase tracking-wider mb-2">Enfoque</h3>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            Estudio aplicado, descriptivo y analítico que cruza variables cuantitativas (stock, pallets, costos) con observación cualitativa.
-                        </p>
-                    </div>
-                    <div class="bg-slate-900/70 p-5 rounded-xl border border-slate-800">
-                        <h3 class="text-emerald-400 font-semibold text-xs uppercase tracking-wider mb-2">Fuentes de Información</h3>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            <strong class="text-white">Primarias:</strong> SAP, Motor DORMEX, bitácoras.<br>
-                            <strong class="text-white">Secundarias:</strong> ODEPA, SAG, MINAGRI, AlzChem.
-                        </p>
-                    </div>
-                    <div class="bg-slate-900/70 p-5 rounded-xl border border-slate-800">
-                        <h3 class="text-emerald-400 font-semibold text-xs uppercase tracking-wider mb-2">Procedimiento</h3>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            Homologación de datos, distinción de stock físico/proyectado, cálculo de paletizaje y dimensionamiento de flotas de transporte.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SLIDE 5: Conclusiones -->
-        <div class="slide bg-slide-5 items-center justify-center p-6">
-            <div class="glass-card rounded-2xl p-8 md:p-10 max-w-4xl w-full">
-                <span class="inline-block py-1 px-3 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-4 border border-emerald-500/20">
-                    1.1.5.5 Conclusiones del Diagnóstico
-                </span>
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">Factibilidad y Cierre del Proyecto</h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                    <div class="bg-slate-900/85 p-5 rounded-xl border border-slate-800 text-center hover:border-emerald-500/50 transition">
-                        <div class="text-4xl font-extrabold text-emerald-400 mb-1 glow-accent">100%</div>
-                        <div class="text-xs text-slate-300 font-medium">Criticidad en Método y Sistemas de Datos</div>
-                    </div>
-                    <div class="bg-slate-900/85 p-5 rounded-xl border border-slate-800 text-center hover:border-emerald-500/50 transition">
-                        <div class="text-4xl font-extrabold text-emerald-400 mb-1 glow-accent">74%</div>
-                        <div class="text-xs text-slate-300 font-medium">Participación de DORMEX en su segmento</div>
-                    </div>
-                    <div class="bg-slate-900/85 p-5 rounded-xl border border-slate-800 text-center hover:border-emerald-500/50 transition">
-                        <div class="text-4xl font-extrabold text-white mb-1">94%</div>
-                        <div class="text-xs text-slate-300 font-medium">Criticidad en Gestión de Almacenamiento</div>
-                    </div>
-                </div>
-
-                <p class="text-sm text-slate-300 font-light text-center max-w-3xl mx-auto leading-relaxed">
-                    Se valida la factibilidad técnica de <strong class="text-white font-medium">MANDARINA</strong> para migrar desde una operación reactiva hacia un modelo de previsión estandarizado, trazable y altamente competitivo.
-                </p>
-            </div>
-        </div>
-
+        <!-- 1.1.5.5 Conclusiones -->
+        <section>
+            <span>1.1.5.5 Conclusiones del Diagnóstico</span>
+            <h2>Factibilidad y Cierre del Proyecto</h2>
+            <p>Se valida la factibilidad técnica de <strong>MANDARINA</strong> para migrar hacia una gestión anticipada, estandarizada y trazable.</p>
+            
+            <!-- Desplegable para Ishikawa / Criticidad de Causas -->
+            <details>
+                <summary>Ver Priorización Ponderada de Causas Raíz (Ishikawa)</summary>
+                <table class="matrix-table">
+                    <tr>
+                        <th>Familia Causal</th>
+                        <th>Impacto (40%)</th>
+                        <th>Exposición (30%)</th>
+                        <th>Brecha (30%)</th>
+                        <th>Criticidad Ponderada</th>
+                        <th>Participación Relativa</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Método</strong></td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>100%</td>
+                        <td>18,73%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Datos y Sistemas</strong></td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>100%</td>
+                        <td>18,73%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Almacenamiento</strong></td>
+                        <td>5</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>94%</td>
+                        <td>17,60%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Transporte / Coordinación / Clientes</strong></td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>80%</td>
+                        <td>14,98% c/u</td>
+                    </tr>
+                </table>
+            </details>
+        </section>
     </main>
 
-    <!-- PIE DE PÁGINA CON CONTROLES INTERACTIVOS -->
-    <footer class="flex justify-between items-center z-25 border-t border-slate-800/80 pt-4 text-xs text-slate-400 relative">
-        <div>
-            <span class="text-emerald-400 font-medium">Proyecto Integral</span> — INACAP La Granja
-        </div>
-        <div class="flex items-center space-x-4">
-            <button onclick="changeSlide(-1)" class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition font-medium cursor-pointer border border-slate-700">&larr; Anterior</button>
-            <span id="slide-indicator" class="font-mono text-emerald-400 font-bold px-3 py-1 bg-slate-900 rounded border border-slate-800">1 / 5</span>
-            <button onclick="changeSlide(1)" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition font-medium cursor-pointer shadow-lg shadow-emerald-900/30">Siguiente &rarr;</button>
-        </div>
+    <footer>
+        <p>Proyecto Integral — INACAP La Granja | Autores: Macarena Soto · Maximiliano Nahuel</p>
     </footer>
 
-    <!-- SCRIPT DE NAVEGACIÓN Y EFECTOS -->
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const indicator = document.getElementById('slide-indicator');
-        const progressBar = document.getElementById('progress-bar');
-
-        function updateView() {
-            slides.forEach((s, i) => {
-                s.classList.toggle('active', i === currentSlide);
-            });
-            
-            // Actualizar indicador inferior
-            indicator.innerText = `${currentSlide + 1} / 5`;
-            
-            // Actualizar barra superior
-            const progressPercent = ((currentSlide + 1) / slides.length) * 100;
-            progressBar.style.width = `${progressPercent}%`;
-
-            // Actualizar botones superiores de selección rápida
-            for (let i = 0; i < slides.length; i++) {
-                const dot = document.getElementById(`dot-${i}`);
-                if (i === currentSlide) {
-                    dot.className = "w-6 h-6 rounded-full text-xs font-mono transition bg-emerald-500 text-slate-950 font-bold shadow-[0_0_10px_#34d399]";
-                } else {
-                    dot.className = "w-6 h-6 rounded-full text-xs font-mono transition bg-slate-800 text-slate-300 hover:bg-slate-700";
-                }
-            }
-        }
-
-        function changeSlide(direction) {
-            currentSlide = (currentSlide + direction + slides.length) % slides.length;
-            updateView();
-        }
-
-        function goToSlide(index) {
-            currentSlide = index;
-            updateView();
-        }
-
-        // Navegación por teclado
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === 'Space' || e.key === 'PageDown') {
-                e.preventDefault();
-                changeSlide(1);
-            }
-            if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-                e.preventDefault();
-                changeSlide(-1);
-            }
-        });
-
-        // Navegación por rueda del ratón con control de velocidad
-        let lastScroll = 0;
-        document.addEventListener('wheel', (e) => {
-            const now = new Date().getTime();
-            if (now - lastScroll < 500) return;
-            lastScroll = now;
-            if (e.deltaY > 0) changeSlide(1);
-            else if (e.deltaY < 0) changeSlide(-1);
-        });
-    </script>
 </body>
 </html>
