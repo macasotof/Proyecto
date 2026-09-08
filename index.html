@@ -16,40 +16,54 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--light);
+            background-color: #0f172a;
             color: var(--dark);
-            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-        /* Header con imagen de fondo relacionada a tecnología / logística / agro */
         header {
-            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80');
-            background-size: cover;
-            background-position: center;
+            background: rgba(15, 23, 42, 0.9);
             color: white;
-            padding: 3rem 1rem;
+            padding: 1rem;
             text-align: center;
+            border-bottom: 1px solid #334155;
         }
-        header h1 { margin: 0; font-size: 2.5rem; color: #34d399; }
-        header p { margin: 0.5rem 0 0; color: #d1d5db; font-size: 1.1rem; }
-        
+        header h1 { margin: 0; font-size: 1.5rem; color: #34d399; }
+        header p { margin: 0.2rem 0 0; color: #94a3b8; font-size: 0.9rem; }
+
+        /* Contenedor principal de diapositivas */
         main {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            flex: 1;
+            max-width: 950px;
+            width: 90%;
+            margin: 1.5rem auto;
+            position: relative;
         }
-        
-        /* Secciones con sutil fondo temático agrícola/frutales */
-        section {
-            background: linear-gradient(rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.94)), url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=1200&q=80');
+
+        /* Cada diapositiva actúa como una tarjeta de presentación */
+        .slide {
+            display: none;
+            background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
-            border-radius: 8px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            border-left: 5px solid var(--primary);
+            border-radius: 10px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            border-left: 6px solid var(--primary);
+            min-height: 380px;
         }
-        
+
+        .slide.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         span.sub-tag {
             font-size: 0.85rem;
             text-transform: uppercase;
@@ -59,10 +73,46 @@
         }
 
         h2 { color: var(--dark); border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; margin-top: 0.5rem; }
-        
+
+        /* Controles de navegación laterales / inferiores */
+        .nav-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 950px;
+            width: 90%;
+            margin: 0 auto 2rem auto;
+        }
+
+        button.nav-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button.nav-btn:hover {
+            background-color: #059669;
+        }
+
+        button.nav-btn:disabled {
+            background-color: #475569;
+            cursor: not-allowed;
+        }
+
+        #slide-counter {
+            color: #94a3b8;
+            font-weight: bold;
+        }
+
         /* Estilo para los desplegables de matrices */
         details {
-            background: #f3f4f6;
+            background: #f1f5f9;
             border: 1px solid var(--border);
             border-radius: 6px;
             padding: 0.8rem 1rem;
@@ -75,7 +125,7 @@
             outline: none;
         }
         summary:hover {
-            color: #065f46;
+            color: #059669;
         }
         table.matrix-table {
             width: 100%;
@@ -90,42 +140,40 @@
             text-align: left;
         }
         table.matrix-table th {
-            background-color: #e5e7eb;
+            background-color: #e2e8f0;
             color: var(--dark);
         }
-        
+
         footer {
             text-align: center;
-            padding: 1.5rem;
-            color: var(--gray);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border);
-            background: white;
+            padding: 1rem;
+            color: #64748b;
+            font-size: 0.85rem;
+            background: rgba(15, 23, 42, 0.9);
+            border-top: 1px solid #334155;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div>
-            <h1>MANDARINA · Torre de Control Logístico</h1>
-            <p>INACAP La Granja · Ingeniería en Gestión Logística</p>
-        </div>
+        <h1>MANDARINA · Torre de Control Logístico</h1>
+        <p>INACAP La Granja · Ingeniería en Gestión Logística</p>
     </header>
 
     <main>
-
-        <!-- 1.1.5.1 Presentación Institucional -->
-        <section>
+        <!-- Diapositiva 1: Presentación Institucional -->
+        <div class="slide active" id="slide-1">
             <span class="sub-tag">1.1.5.1 Presentación Institucional</span>
             <h2>Martínez & Valdivieso S.A.</h2>
             <p>
                 Torre de Control Logístico y optimización de reabastecimiento para <strong>DORMEX 20 y DORMEX 200</strong> (NS Agro). Proyecto enfocado en estandarizar la cadena de suministro en un entorno estacional crítico.
             </p>
-        </section>
+            <p><strong>Autores:</strong> Macarena Soto · Maximiliano Nahuel</p>
+        </div>
 
-        <!-- 1.1.5.2 Situación Actual -->
-        <section>
+        <!-- Diapositiva 2: Situación Actual -->
+        <div class="slide" id="slide-2">
             <span class="sub-tag">1.1.5.2 Situación Actual</span>
             <h2>Diagnóstico PESTEL, Porter y FODA</h2>
             <div>
@@ -141,7 +189,6 @@
                 </p>
             </div>
 
-            <!-- Desplegable para ver las matrices PESTEL y Porter completas -->
             <details>
                 <summary>🔗 Ver detalle de Matrices PESTEL y Porter</summary>
                 <table class="matrix-table">
@@ -167,10 +214,10 @@
                     </tr>
                 </table>
             </details>
-        </section>
+        </div>
 
-        <!-- 1.1.5.3 Matriz de Confrontación -->
-        <section>
+        <!-- Diapositiva 3: Matriz de Confrontación -->
+        <div class="slide" id="slide-3">
             <span class="sub-tag">1.1.5.3 Matriz de Confrontación</span>
             <h2>Estrategia Priorizada: DO1 + DO2 + FO1</h2>
             <div>
@@ -179,7 +226,6 @@
                 </p>
             </div>
 
-            <!-- Desplegable para ver la Matriz de Confrontación -->
             <details>
                 <summary>🔗 Ver detalle de la Matriz de Confrontación Estratégica</summary>
                 <table class="matrix-table">
@@ -201,10 +247,10 @@
                     </tr>
                 </table>
             </details>
-        </section>
+        </div>
 
-        <!-- 1.1.5.4 Metodología de Estudio -->
-        <section>
+        <!-- Diapositiva 4: Metodología -->
+        <div class="slide" id="slide-4">
             <span class="sub-tag">1.1.5.4 Metodología de Estudio</span>
             <h2>Enfoque, Fuentes y Procedimiento</h2>
             <div>
@@ -219,30 +265,29 @@
                     <strong>Procedimiento:</strong> Homologación de datos, distinción de stock físico/proyectado, cálculo de paletizaje y dimensionamiento de flotas de transporte.
                 </p>
             </div>
-        </section>
+        </div>
 
-        <!-- 1.1.5.5 Conclusiones del Diagnóstico -->
-        <section>
+        <!-- Diapositiva 5: Conclusiones -->
+        <div class="slide" id="slide-5">
             <span class="sub-tag">1.1.5.5 Conclusiones del Diagnóstico</span>
             <h2>Factibilidad y Cierre del Proyecto</h2>
 
             <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
-                <div style="background: #e6f4ea; padding: 1rem; border-radius: 6px; flex: 1; text-align: center;">
-                    <strong style="font-size: 1.5rem; color: #0d6efd;">100%</strong><br><span style="font-size:0.85rem">Criticidad en Método y Sistemas de Datos</span>
+                <div style="background: #e2e8f0; padding: 0.8rem; border-radius: 6px; flex: 1; text-align: center;">
+                    <strong style="font-size: 1.3rem; color: #047857;">100%</strong><br><span style="font-size:0.8rem">Criticidad en Método y Datos</span>
                 </div>
-                <div style="background: #e6f4ea; padding: 1rem; border-radius: 6px; flex: 1; text-align: center;">
-                    <strong style="font-size: 1.5rem; color: #0d6efd;">74%</strong><br><span style="font-size:0.85rem">Participación de DORMEX en su segmento</span>
+                <div style="background: #e2e8f0; padding: 0.8rem; border-radius: 6px; flex: 1; text-align: center;">
+                    <strong style="font-size: 1.3rem; color: #047857;">74%</strong><br><span style="font-size:0.8rem">Participación de DORMEX</span>
                 </div>
-                <div style="background: #e6f4ea; padding: 1rem; border-radius: 6px; flex: 1; text-align: center;">
-                    <strong style="font-size: 1.5rem; color: #0d6efd;">94%</strong><br><span style="font-size:0.85rem">Criticidad en Gestión de Almacenamiento</span>
+                <div style="background: #e2e8f0; padding: 0.8rem; border-radius: 6px; flex: 1; text-align: center;">
+                    <strong style="font-size: 1.3rem; color: #047857;">94%</strong><br><span style="font-size:0.8rem">Criticidad en Almacenamiento</span>
                 </div>
             </div>
 
-            <p style="margin-top: 1.5rem;">
+            <p style="margin-top: 1.2rem;">
                 Se valida la factibilidad técnica de <strong>MANDARINA</strong> para migrar desde una operación reactiva hacia un modelo de previsión estandarizado, trazable y altamente competitivo.
             </p>
 
-            <!-- Desplegable para ver la Criticidad de Causas (Ishikawa) -->
             <details>
                 <summary>🔗 Ver detalle de Criticidad Ponderada de Causas (Ishikawa)</summary>
                 <table class="matrix-table">
@@ -283,13 +328,42 @@
                     </tr>
                 </table>
             </details>
-        </section>
-
+        </div>
     </main>
+
+    <!-- Botones de navegación interactivos -->
+    <div class="nav-controls">
+        <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)" disabled>← Anterior</button>
+        <span id="slide-counter">Diapositiva 1 de 5</span>
+        <button class="nav-btn" id="next-btn" onclick="changeSlide(1)">Siguiente →</button>
+    </div>
 
     <footer>
         <p>Proyecto Integral — INACAP La Granja | Autores: Macarena Soto · Maximiliano Nahuel</p>
     </footer>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        function changeSlide(direction) {
+            document.getElementById(`slide-${currentSlide}`).classList.remove('active');
+            
+            currentSlide += direction;
+            
+            if (currentSlide < 1) currentSlide = 1;
+            if (currentSlide > totalSlides) currentSlide = totalSlides;
+
+            document.getElementById(`slide-${currentSlide}`).classList.add('active');
+            
+            // Actualizar texto del contador
+            document.getElementById('slide-counter').innerText = `Diapositiva ${currentSlide} de ${totalSlides}`;
+            
+            // Estado de los botones
+            document.getElementById('prev-btn').disabled = currentSlide === 1;
+            document.getElementById('next-btn').disabled = currentSlide === totalSlides;
+        }
+    </script>
 
 </body>
 </html>
