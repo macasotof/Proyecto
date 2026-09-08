@@ -1,291 +1,274 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mandarina - Torre de Control Logístico | Proyecto Integral</title>
-    <!-- Tailwind CSS para un diseño moderno y responsivo -->
+    <title>Mandarina - Torre de Control Logístico</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome para iconos -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darker: '#000000',
+                        cardbg: '#0a0a0a',
+                        bordercolor: '#262626',
+                        accent: '#e2e8f0',
+                        gold: '#f59e0b'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            scroll-behavior: smooth;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-        }
-        .hero-gradient {
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #065f46 100%);
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000000; color: #f8fafc; }
+        .slide { display: none; }
+        .slide.active { display: flex; animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-100 antialiased">
+<body class="min-h-screen flex flex-col justify-between selection:bg-gold selection:text-black">
 
-    <!-- Navegación Superior -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-amber-500/20">
-                    M
-                </div>
-                <div>
-                    <span class="text-xl font-bold tracking-tight text-white">MANDARINA</span>
-                    <span class="block text-xs text-amber-400 font-medium tracking-wide">TORRE DE CONTROL LOGÍSTICO</span>
-                </div>
+    <!-- Header / Barra Superior -->
+    <header class="w-full border-b border-bordercolor bg-darker/80 backdrop-blur-md px-6 py-4 flex items-center justify-between z-50">
+        <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded bg-white text-black font-extrabold flex items-center justify-center text-sm">M</div>
+            <div>
+                <h1 class="text-xs font-bold tracking-widest text-white">MANDARINA</h1>
+                <p class="text-[10px] text-zinc-400">TORRE DE CONTROL LOGÍSTICO</p>
             </div>
-            <div class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-300">
-                <a href="#problema" class="hover:text-amber-400 transition">1. Problema</a>
-                <a href="#analisis" class="hover:text-amber-400 transition">2. Diagnóstico</a>
-                <a href="#solucion" class="hover:text-amber-400 transition">3. Solución</a>
-                <a href="#metodologia" class="hover:text-amber-400 transition">4. Metodología</a>
-                <a href="#conclusiones" class="hover:text-amber-400 transition">5. Conclusiones</a>
-            </div>
-            <div class="bg-slate-800 border border-slate-700 px-4 py-2 rounded-full text-xs font-semibold text-slate-300 shadow-sm">
-                <i class="fa-solid fa-user-group text-amber-400 mr-2"></i> Macarena & Maximiliano
-            </div>
+        </div>
+        <div class="text-xs text-zinc-400 font-medium tracking-wide">
+            <span class="text-white">Macarena & Maximiliano</span> | Proyecto Integral
         </div>
     </header>
 
-    <!-- Hero / Portada -->
-    <section class="relative min-h-screen hero-gradient flex items-center justify-center pt-20 px-4 overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div class="max-w-5xl mx-auto text-center relative z-10 space-y-8">
-            <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 px-4 py-2 rounded-full text-sm font-semibold tracking-wide uppercase">
-                <i class="fa-solid fa-seedling"></i> Proyecto Integral — Martínez y Valdivieso S.A. (NS Agro)
+    <!-- Contenedor Principal de Presentación (Slides) -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-6 py-12 flex items-center justify-center relative">
+
+        <!-- DIAPOSITIVA 0: PORTADA -->
+        <section id="slide-0" class="slide active flex-col items-center text-center space-y-6 w-full max-w-3xl">
+            <div class="inline-flex items-center gap-2 border border-bordercolor bg-cardbg px-4 py-1.5 rounded-full text-xs text-zinc-300">
+                <i class="fa-solid fa-seedling text-gold"></i> Martínez y Valdivieso S.A. (NS Agro)
             </div>
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-none">
-                Gestión Logística de Alta Criticidad: <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">DORMEX</span>
-            </h1>
-            <p class="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
-                Controlar un producto que representa el <strong class="text-white font-semibold">74% del valor vendido</strong> de su categoría comercial exige una precisión quirúrgica en temporada agrícola.
+            <h2 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                Gestión Logística de <br><span class="text-zinc-400">Alta Criticidad: DORMEX</span>
+            </h2>
+            <p class="text-zinc-400 text-base max-w-xl font-light">
+                Controlar un producto que representa el 74% del valor de su categoría exige precisión quirúrgica estacional.
             </p>
-            <div class="pt-4 flex flex-wrap justify-center gap-4">
-                <a href="#problema" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 py-4 rounded-xl shadow-lg shadow-amber-500/20 transition transform hover:-translate-y-0.5 flex items-center gap-3">
-                    <span>Iniciar Presentación</span>
-                    <i class="fa-solid fa-arrow-down"></i>
-                </a>
+        </section>
+
+        <!-- DIAPOSITIVA 1: EL PROBLEMA -->
+        <section id="slide-1" class="slide flex-col space-y-8 w-full max-w-4xl">
+            <div class="border-l-2 border-white pl-4">
+                <span class="text-xs font-semibold tracking-widest text-zinc-400 uppercase">01 / Problema</span>
+                <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">El Producto y la Empresa</h3>
             </div>
-        </div>
-    </section>
-
-    <!-- Sección 1: El Problema y la Empresa -->
-    <section id="problema" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="mb-12 border-l-4 border-amber-500 pl-4">
-            <span class="text-amber-400 font-bold tracking-wider text-sm uppercase">Bloque 01</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Presentación, el Problema y la Empresa</h2>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div class="lg:col-span-2 space-y-6 text-slate-300 text-lg leading-relaxed bg-slate-800/50 p-8 rounded-3xl border border-slate-700/50 shadow-xl">
-                <p>
-                    Buenas tardes. Imaginen gestionar un producto que representa el <strong class="text-amber-400 font-bold">74% del valor vendido</strong> de su categoría comercial y cuya ventana de venta depende estrictamente de una temporada agrícola precisa.
-                </p>
-                <p>
-                    Ese producto es <strong class="text-white font-semibold">DORMEX</strong>, en sus versiones 20 y 200, una solución fitosanitaria de alta criticidad —un regulador de crecimiento y rompedor de dormancia— utilizada fundamentalmente en frutales para uniformar la brotación y asegurar el rendimiento de la cosecha. Controlar este producto exige una precisión quirúrgica.
-                </p>
-                <p>
-                    Nuestro proyecto se denomina <strong class="text-white font-semibold">MANDARINA, Torre de Control Logístico</strong>, y se desarrolla en <em>Martínez y Valdivieso S.A.</em>, empresa orientada a la distribución de insumos agrícolas que forma parte de NS Agro. Operamos mediante una red de sucursales, vendedores y operadores logísticos, donde el éxito comercial de DORMEX no solo depende de venderlo, sino de tenerlo disponible en el lugar y momento exactos.
-                </p>
-            </div>
-
-            <div class="space-y-6">
-                <div class="bg-gradient-to-br from-amber-500/20 to-slate-800 p-6 rounded-3xl border border-amber-500/30">
-                    <div class="text-amber-400 text-3xl font-black mb-2">74%</div>
-                    <div class="text-white font-bold text-lg">Valor Vendido</div>
-                    <p class="text-slate-400 text-sm mt-1">Representación absoluta dentro de su categoría comercial clave.</p>
-                </div>
-                <div class="bg-slate-800 p-6 rounded-3xl border border-slate-700/50">
-                    <div class="text-blue-400 text-3xl font-black mb-2">DORMEX</div>
-                    <div class="text-white font-bold text-lg">Versiones 20 y 200</div>
-                    <p class="text-slate-400 text-sm mt-1">Regulador de crecimiento y rompedor de dormancia altamente estacional.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección 2: Situación Actual (PESTEL, Porter, FODA) -->
-    <section id="analisis" class="py-24 bg-slate-950/50 border-y border-slate-800 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-12 border-l-4 border-amber-500 pl-4">
-                <span class="text-amber-400 font-bold tracking-wider text-sm uppercase">Bloque 02</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Situación Actual: PESTEL, Porter y FODA</h2>
-            </div>
-            <p class="text-slate-300 text-lg mb-12 max-w-3xl">Para entender por dónde se nos escapa la eficiencia, analizamos el entorno mediante tres herramientas estratégicas clave.</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- PESTEL -->
-                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-lg flex flex-col justify-between">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-cardbg border border-bordercolor p-6 rounded-xl flex flex-col justify-between">
                     <div>
-                        <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl font-bold mb-6">
-                            <i class="fa-solid fa-globe"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-4">Análisis PESTEL</h3>
-                        <p class="text-slate-300 text-sm leading-relaxed">
-                            Factores clave: <strong class="text-white">tecnológico, ecológico-climático y legal-sanitario</strong>. Aunque disponemos de SAP y datos transaccionales, la planificación de DORMEX todavía depende de descargas, limpieza y cruces manuales de planillas. Almacenamiento condicionado por la estricta normativa de sustancias peligrosas (<strong class="text-white">SUSPEL</strong>) y demanda altamente sensible al clima.
-                        </p>
+                        <div class="text-2xl font-black text-gold mb-2">74%</div>
+                        <h4 class="text-white font-semibold text-sm mb-1">Valor Comercial</h4>
+                        <p class="text-zinc-400 text-xs leading-relaxed">Representación absoluta dentro de su categoría comercial clave.</p>
                     </div>
                 </div>
-
-                <!-- Porter -->
-                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-lg flex flex-col justify-between">
+                <div class="bg-cardbg border border-bordercolor p-6 rounded-xl flex flex-col justify-between">
                     <div>
-                        <div class="w-12 h-12 rounded-2xl bg-orange-500/10 text-orange-400 flex items-center justify-center text-xl font-bold mb-6">
-                            <i class="fa-solid fa-chess-board"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-4">Cinco Fuerzas de Porter</h3>
-                        <p class="text-slate-300 text-sm leading-relaxed">
-                            Enfrentamos un <strong class="text-white">alto poder de proveedores y clientes</strong>, sumado a una alta rivalidad competitiva. La regla de oro en este mercado es implacable: <span class="text-amber-400 font-medium">si fallamos en la disponibilidad logística, el cliente simplemente compra a la competencia</span>.
-                        </p>
+                        <div class="text-xl font-black text-white mb-2">DORMEX 20 / 200</div>
+                        <h4 class="text-white font-semibold text-sm mb-1">Regulador Crítico</h4>
+                        <p class="text-zinc-400 text-xs leading-relaxed">Rompedor de dormancia clave para uniformar brotación en frutales.</p>
                     </div>
                 </div>
-
-                <!-- FODA -->
-                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-lg flex flex-col justify-between">
+                <div class="bg-cardbg border border-bordercolor p-6 rounded-xl flex flex-col justify-between">
                     <div>
-                        <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl font-bold mb-6">
-                            <i class="fa-solid fa-chart-pie"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-4">Matriz FODA</h3>
-                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
-                            Puntos fuertes: cobertura, SAP y experiencia VMI. Debilidades críticas: extracción manual de datos, reposición no estandarizada y falta de consolidación de fletes.
-                        </p>
-                        <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700 text-xs font-semibold text-amber-400">
-                            Factores favorables: 3,82 vs Desfavorables: 1,53 (¡El potencial está, falta ordenarlo!)
-                        </div>
+                        <div class="text-xl font-black text-white mb-2">MANDARINA</div>
+                        <h4 class="text-white font-semibold text-sm mb-1">Torre de Control</h4>
+                        <p class="text-zinc-400 text-xs leading-relaxed">Solución desarrollada en Martínez y Valdivieso S.A. (NS Agro).</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Sección 3: Matriz de Confrontación y Solución MANDARINA -->
-    <section id="solucion" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="mb-12 border-l-4 border-amber-500 pl-4">
-            <span class="text-amber-400 font-bold tracking-wider text-sm uppercase">Bloque 03</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Matriz de Confrontación y la Solución MANDARINA</h2>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6 text-slate-300 text-lg leading-relaxed bg-slate-800/40 p-8 rounded-3xl border border-slate-700/50">
-                <p>
-                    ¿Cómo conectamos este diagnóstico con una solución? A través de la <strong class="text-white">matriz de confrontación</strong> priorizamos las estrategias DO, combinando la oportunidad tecnológica con la solución de nuestras debilidades operativas.
-                </p>
-                <p>
-                    La propuesta es clara: <strong class="text-amber-400 font-semibold">MANDARINA</strong> actúa como habilitador tecnológico, pero su verdadero valor está en <span class="text-white font-semibold">formalizar primero el método logístico antes de digitalizarlo</span>.
-                </p>
+        <!-- DIAPOSITIVA 2: DIAGNÓSTICO PESTEL, PORTER, FODA -->
+        <section id="slide-2" class="slide flex-col space-y-8 w-full max-w-4xl">
+            <div class="border-l-2 border-white pl-4">
+                <span class="text-xs font-semibold tracking-widest text-zinc-400 uppercase">02 / Diagnóstico</span>
+                <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">PESTEL, Porter y FODA</h3>
             </div>
-
-            <div class="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 p-8 rounded-3xl shadow-xl space-y-6">
-                <h3 class="text-xl font-bold text-white flex items-center gap-3">
-                    <i class="fa-solid fa-cogs text-amber-400"></i> Pilares de la Solución Propuesta
-                </h3>
-                <ul class="space-y-4 text-slate-300 text-sm">
-                    <li class="flex items-start gap-3">
-                        <i class="fa-solid fa-circle-check text-amber-400 mt-1"></i>
-                        <span>Estandarizar el proceso de planificación de DORMEX de punta a punta.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fa-solid fa-circle-check text-amber-400 mt-1"></i>
-                        <span>Integrar SAP directamente con el forecast comercial.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fa-solid fa-circle-check text-amber-400 mt-1"></i>
-                        <span>Consolidar inteligentemente las necesidades de reposición.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="fa-solid fa-circle-check text-amber-400 mt-1"></i>
-                        <span>Transformar la decisión en un flujo trazable que cruce inventario, demanda real, capacidad de bodega y eficiencia de transporte.</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección 4: Metodología y Recolección -->
-    <section id="metodologia" class="py-24 bg-slate-950/50 border-y border-slate-800 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-12 border-l-4 border-amber-500 pl-4">
-                <span class="text-amber-400 font-bold tracking-wider text-sm uppercase">Bloque 04</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Metodología y Recolección de Información</h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl">
-                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
-                        <i class="fa-solid fa-scale-balanced text-amber-400"></i> Enfoque Mixto Aplicado
-                    </h3>
-                    <p class="text-slate-300 text-sm leading-relaxed">
-                        Combinamos el mundo cuantitativo —analizando stock, forecast, ventas, pallets, capacidad y costos— con evidencia cualitativa directa de la operación real en terreno.
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-cardbg border border-bordercolor p-6 rounded-xl space-y-3">
+                    <div class="text-xs uppercase tracking-wider text-zinc-400 font-bold">PESTEL</div>
+                    <p class="text-zinc-300 text-xs leading-relaxed">
+                        Planificación atada a planillas manuales. Estricta normativa de sustancias peligrosas (<strong class="text-white">SUSPEL</strong>) y alta sensibilidad climática.
                     </p>
                 </div>
-                <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl">
-                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-3">
-                        <i class="fa-solid fa-database text-amber-400"></i> Fuentes de Información
-                    </h3>
-                    <p class="text-slate-300 text-sm leading-relaxed">
-                        <strong class="text-white">Primarias:</strong> SAP, prototipo del Motor DORMEX, correos y bitácoras.<br>
-                        <strong class="text-white">Secundarias:</strong> SAG, ODEPA, MINAGRI y el proveedor internacional AlzChem.
+                <div class="bg-cardbg border border-bordercolor p-6 rounded-xl space-y-3">
+                    <div class="text-xs uppercase tracking-wider text-zinc-400 font-bold">Porter</div>
+                    <p class="text-zinc-300 text-xs leading-relaxed">
+                        Alto poder de negociación y fuerte rivalidad. <span class="text-white">Si fallamos en disponibilidad logística, el cliente compra a la competencia.</span>
+                    </p>
+                </div>
+                <div class="bg-cardbg border border-bordercolor p-6 rounded-xl space-y-3">
+                    <div class="text-xs uppercase tracking-wider text-zinc-400 font-bold">FODA</div>
+                    <p class="text-zinc-300 text-xs leading-relaxed">
+                        Fortalezas en SAP y VMI; debilidades en extracción manual y fletes. <strong class="text-gold">Factores favorables: 3.82 vs 1.53 desfavorables.</strong>
                     </p>
                 </div>
             </div>
+        </section>
 
-            <div class="bg-amber-500/10 border border-amber-500/20 p-8 rounded-3xl">
-                <h4 class="text-amber-400 font-bold text-lg mb-2">Procedimiento Operativo Ejecutado</h4>
-                <p class="text-slate-300 text-sm leading-relaxed">
-                    El trabajo consistió rigurosamente en homologar datos, separar stock físico del proyectado, evitar duplicidad en la demanda, calcular requerimientos exactos en pallets y definir ventanas de reposición altamente eficientes.
-                </p>
+        <!-- DIAPOSITIVA 3: SOLUCIÓN -->
+        <section id="slide-3" class="slide flex-col space-y-8 w-full max-w-4xl">
+            <div class="border-l-2 border-white pl-4">
+                <span class="text-xs font-semibold tracking-widest text-zinc-400 uppercase">03 / Solución</span>
+                <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Matriz de Confrontación & MANDARINA</h3>
             </div>
-        </div>
-    </section>
-
-    <!-- Sección 5: Conclusiones y Cierre -->
-    <section id="conclusiones" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="mb-12 border-l-4 border-amber-500 pl-4">
-            <span class="text-amber-400 font-bold tracking-wider text-sm uppercase">Bloque 05</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Conclusiones y Cierre</h2>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-            <div class="bg-slate-800/60 border border-slate-700/60 p-8 rounded-3xl">
-                <div class="text-amber-400 font-extrabext text-2xl mb-2">01</div>
-                <h3 class="text-white font-bold text-lg mb-2">El Diagnóstico Real</h3>
-                <p class="text-slate-300 text-sm leading-relaxed">
-                    Nuestro problema principal no es la falta de información, sino la ausencia de un proceso único y trazable para reabastecer.
+            <div class="bg-cardbg border border-bordercolor p-8 rounded-xl space-y-6">
+                <p class="text-zinc-300 text-sm leading-relaxed">
+                    Priorización mediante estrategias DO: <strong class="text-white">Formalizar primero el método logístico antes de digitalizarlo.</strong>
                 </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-zinc-300">
+                    <div class="flex items-start gap-3 bg-black/40 p-4 rounded border border-bordercolor">
+                        <i class="fa-solid fa-check text-gold mt-0.5"></i>
+                        <span>Estandarización completa de la planificación de DORMEX.</span>
+                    </div>
+                    <div class="flex items-start gap-3 bg-black/40 p-4 rounded border border-bordercolor">
+                        <i class="fa-solid fa-check text-gold mt-0.5"></i>
+                        <span>Integración directa entre SAP y el forecast comercial.</span>
+                    </div>
+                    <div class="flex items-start gap-3 bg-black/40 p-4 rounded border border-bordercolor">
+                        <i class="fa-solid fa-check text-gold mt-0.5"></i>
+                        <span>Consolidación inteligente de necesidades de reposición.</span>
+                    </div>
+                    <div class="flex items-start gap-3 bg-black/40 p-4 rounded border border-bordercolor">
+                        <i class="fa-solid fa-check text-gold mt-0.5"></i>
+                        <span>Flujo trazable: inventario, demanda real y capacidad de bodega.</span>
+                    </div>
+                </div>
             </div>
-            <div class="bg-slate-800/60 border border-slate-700/60 p-8 rounded-3xl">
-                <div class="text-amber-400 font-extrabext text-2xl mb-2">02</div>
-                <h3 class="text-white font-bold text-lg mb-2">Criticidad Ponderada</h3>
-                <p class="text-slate-300 text-sm leading-relaxed">
-                    Las causas críticas recaen en <strong class="text-white">Método</strong> y en <strong class="text-white">Datos y Sistemas</strong> con un <span class="text-amber-400 font-bold">100%</span>, seguidas de cerca por <strong class="text-white">Almacenamiento</strong> con un <span class="text-amber-400 font-bold">94%</span>.
-                </p>
-            </div>
-            <div class="bg-slate-800/60 border border-slate-700/60 p-8 rounded-3xl">
-                <div class="text-amber-400 font-extrabext text-2xl mb-2">03</div>
-                <h3 class="text-white font-bold text-lg mb-2">Factibilidad Total</h3>
-                <p class="text-slate-300 text-sm leading-relaxed">
-                    MANDARINA es técnicamente factible y nos permite pasar de una gestión reactiva a una planificación anticipada, estandarizada y medible.
-                </p>
-            </div>
-        </div>
+        </section>
 
-        <div class="bg-gradient-to-r from-blue-900/40 via-slate-900 to-amber-950/40 border border-slate-700 p-12 rounded-3xl text-center space-y-6">
-            <h3 class="text-3xl font-extrabold text-white">¡Muchas gracias por su atención!</h3>
-            <p class="text-slate-300 max-w-xl mx-auto">
-                Proyecto Integral — Autores: <strong class="text-amber-400">Macarena y Maximiliano</strong>.
-            </p>
-        </div>
-    </section>
+        <!-- DIAPOSITIVA 4: METODOLOGÍA -->
+        <section id="slide-4" class="slide flex-col space-y-8 w-full max-w-4xl">
+            <div class="border-l-2 border-white pl-4">
+                <span class="text-xs font-semibold tracking-widest text-zinc-400 uppercase">04 / Metodología</span>
+                <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Recolección de Información</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-cardbg border border-bordercolor p-6 rounded-xl space-y-3">
+                    <h4 class="text-white font-semibold text-sm">Enfoque Mixto</h4>
+                    <p class="text-zinc-400 text-xs leading-relaxed">
+                        Combinación analítica cuantitativa (stock, forecast, ventas, pallets y costos) con validación cualitativa en terreno.
+                    </p>
+                </div>
+                <div class="bg-cardbg border border-bordercolor p-6 rounded-xl space-y-3">
+                    <h4 class="text-white font-semibold text-sm">Fuentes de Datos</h4>
+                    <p class="text-zinc-400 text-xs leading-relaxed">
+                        <strong class="text-white">Primarias:</strong> SAP, prototipo Motor DORMEX, bitácoras.<br>
+                        <strong class="text-white">Secundarias:</strong> SAG, ODEPA, MINAGRI, AlzChem.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Footer -->
-    <footer class="bg-slate-950 border-t border-slate-800 py-8 text-center text-slate-500 text-sm">
-        <p>Mandarina Torre de Control Logístico © 2026 — Martínez y Valdivieso S.A. / NS Agro</p>
+        <!-- DIAPOSITIVA 5: CONCLUSIONES -->
+        <section id="slide-5" class="slide flex-col space-y-8 w-full max-w-4xl">
+            <div class="border-l-2 border-white pl-4">
+                <span class="text-xs font-semibold tracking-widest text-zinc-400 uppercase">05 / Cierre</span>
+                <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Conclusiones y Conclusiones</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-cardbg border border-bordercolor p-6 rounded-xl space-y-2">
+                    <span class="text-xs text-zinc-500 font-mono">01</span>
+                    <h4 class="text-white font-semibold text-sm">El Problema</h4>
+                    <p class="text-zinc-400 text-xs">Ausencia de un proceso único y trazable para reabastecer.</p>
+                </div>
+                <div class="bg-cardbg border border-bordercolor p-6 rounded-xl space-y-2">
+                    <span class="text-xs text-zinc-500 font-mono">02</span>
+                    <h4 class="text-white font-semibold text-sm">Criticidad</h4>
+                    <p class="text-zinc-400 text-xs">Método y Datos (100%), Almacenamiento (94%).</p>
+                </div>
+                <div class="bg-cardbg border border-bordercolor p-6 rounded-xl space-y-2">
+                    <span class="text-xs text-zinc-500 font-mono">03</span>
+                    <h4 class="text-white font-semibold text-sm">Salto Logístico</h4>
+                    <p class="text-zinc-400 text-xs">De gestión reactiva a planificación anticipada y medible.</p>
+                </div>
+            </div>
+            <div class="text-center pt-4">
+                <p class="text-xs text-zinc-400 font-medium">Muchas gracias — Macarena & Maximiliano</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Barra de Navegación Inferior (Controles de Diapositiva) -->
+    <footer class="w-full border-t border-bordercolor bg-darker/80 backdrop-blur-md px-6 py-4 flex items-center justify-between z-50">
+        <button id="prevBtn" onclick="changeSlide(-1)" class="border border-bordercolor bg-cardbg hover:bg-zinc-800 text-zinc-300 px-4 py-2 rounded text-xs font-medium transition disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2">
+            <i class="fa-solid fa-arrow-left"></i> Anterior
+        </button>
+        <div id="slideCounter" class="text-xs font-mono text-zinc-400 tracking-widest">
+            1 / 6
+        </div>
+        <button id="nextBtn" onclick="changeSlide(1)" class="bg-white hover:bg-zinc-200 text-black px-5 py-2 rounded text-xs font-bold transition flex items-center gap-2">
+            Siguiente <i class="fa-solid fa-arrow-right"></i>
+        </button>
     </footer>
 
+    <!-- Script de Control Interactivo -->
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 6;
+
+        function updateSlideView() {
+            for (let i = 0; i < totalSlides; i++) {
+                const slide = document.getElementById(`slide-${i}`);
+                if (i === currentSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            }
+            document.getElementById('slideCounter').innerText = `${currentSlide + 1} / ${totalSlides}`;
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentSlide === totalSlides - 1) {
+                nextBtn.innerHTML = `Finalizar <i class="fa-solid fa-rotate-right"></i>`;
+            } else {
+                nextBtn.innerHTML = `Siguiente <i class="fa-solid fa-arrow-right"></i>`;
+            }
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide >= totalSlides) {
+                currentSlide = 0; // Vuelve al inicio si llega al final
+            } else if (currentSlide < 0) {
+                currentSlide = 0;
+            }
+            updateSlideView();
+        }
+
+        // Navegación con teclado (Flecha izquierda / derecha)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                if (currentSlide < totalSlides - 1) changeSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) changeSlide(-1);
+            }
+        });
+
+        updateSlideView();
+    </script>
 </body>
 </html>
