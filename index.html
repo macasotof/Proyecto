@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MANDARINA · Proyecto Integral</title>
+    <title>MANDARINA · Torre de Control Logístico</title>
     <style>
         :root {
             --primary: #10b981;
@@ -20,36 +20,53 @@
             color: var(--dark);
             line-height: 1.6;
         }
+        /* Header con imagen de fondo relacionada a tecnología / logística / agro */
         header {
-            background: var(--dark);
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
             color: white;
-            padding: 2rem 1rem;
+            padding: 3rem 1rem;
             text-align: center;
         }
-        header h1 { margin: 0; font-size: 2.2rem; color: var(--primary); }
-        header p { margin: 0.5rem 0 0; color: #9ca3af; }
+        header h1 { margin: 0; font-size: 2.5rem; color: #34d399; }
+        header p { margin: 0.5rem 0 0; color: #d1d5db; font-size: 1.1rem; }
         
         main {
             max-width: 900px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
+        
+        /* Secciones con sutil fondo temático agrícola/frutales */
         section {
-            background: white;
+            background: linear-gradient(rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.94)), url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
             border-radius: 8px;
             padding: 2rem;
             margin-bottom: 2rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--primary);
         }
-        h2 { color: var(--dark); border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; }
         
-        /* Estilo para los botones desplegables de matrices */
+        span.sub-tag {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray);
+            font-weight: bold;
+        }
+
+        h2 { color: var(--dark); border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; margin-top: 0.5rem; }
+        
+        /* Estilo para los desplegables de matrices */
         details {
             background: #f3f4f6;
             border: 1px solid var(--border);
             border-radius: 6px;
             padding: 0.8rem 1rem;
-            margin-top: 1rem;
+            margin-top: 1.2rem;
         }
         summary {
             font-weight: bold;
@@ -91,7 +108,7 @@
 
     <header>
         <div>
-            <h1>MANDARINA · Proyecto Integral</h1>
+            <h1>MANDARINA · Torre de Control Logístico</h1>
             <p>INACAP La Granja · Ingeniería en Gestión Logística</p>
         </div>
     </header>
@@ -100,20 +117,20 @@
 
         <!-- 1.1.5.1 Presentación Institucional -->
         <section>
-            <span>1.1.5.1 Presentación Institucional</span>
+            <span class="sub-tag">1.1.5.1 Presentación Institucional</span>
             <h2>Martínez & Valdivieso S.A.</h2>
             <p>
-                Torre de Control Logístico y optimización de reabastecimiento para <strong>DORMEX 20 y DORMEX 200</strong> (NS Agro).
+                Torre de Control Logístico y optimización de reabastecimiento para <strong>DORMEX 20 y DORMEX 200</strong> (NS Agro). Proyecto enfocado en estandarizar la cadena de suministro en un entorno estacional crítico.
             </p>
         </section>
 
         <!-- 1.1.5.2 Situación Actual -->
         <section>
-            <span>1.1.5.2 Situación Actual</span>
+            <span class="sub-tag">1.1.5.2 Situación Actual</span>
             <h2>Diagnóstico PESTEL, Porter y FODA</h2>
             <div>
                 <p>
-                    <strong>Tecnológico:</strong> SAP disponible pero con cruces manuales.<br>
+                    <strong>Tecnológico:</strong> SAP disponible pero con cruces manuales intensivos.<br>
                     <strong>Legal:</strong> Rigurosa normativa SUSPEL en sustancias peligrosas.
                 </p>
                 <p>
@@ -124,9 +141,9 @@
                 </p>
             </div>
 
-            <!-- Enlace desplegable para ver las matrices PESTEL y Porter completas -->
+            <!-- Desplegable para ver las matrices PESTEL y Porter completas -->
             <details>
-                <summary>Ver detalle de Matrices PESTEL y Porter</summary>
+                <summary>🔗 Ver detalle de Matrices PESTEL y Porter</summary>
                 <table class="matrix-table">
                     <tr>
                         <th>Análisis / Dimensión</th>
@@ -154,7 +171,7 @@
 
         <!-- 1.1.5.3 Matriz de Confrontación -->
         <section>
-            <span>1.1.5.3 Matriz de Confrontación</span>
+            <span class="sub-tag">1.1.5.3 Matriz de Confrontación</span>
             <h2>Estrategia Priorizada: DO1 + DO2 + FO1</h2>
             <div>
                 <p>
@@ -162,9 +179,9 @@
                 </p>
             </div>
 
-            <!-- Enlace desplegable para ver la Matriz de Confrontación -->
+            <!-- Desplegable para ver la Matriz de Confrontación -->
             <details>
-                <summary>Ver detalle de la Matriz de Confrontación Estratégica</summary>
+                <summary>🔗 Ver detalle de la Matriz de Confrontación Estratégica</summary>
                 <table class="matrix-table">
                     <tr>
                         <th>Estrategia</th>
@@ -188,7 +205,7 @@
 
         <!-- 1.1.5.4 Metodología de Estudio -->
         <section>
-            <span>1.1.5.4 Metodología de Estudio</span>
+            <span class="sub-tag">1.1.5.4 Metodología de Estudio</span>
             <h2>Enfoque, Fuentes y Procedimiento</h2>
             <div>
                 <p>
@@ -206,21 +223,18 @@
 
         <!-- 1.1.5.5 Conclusiones del Diagnóstico -->
         <section>
-            <span>1.1.5.5 Conclusiones del Diagnóstico</span>
+            <span class="sub-tag">1.1.5.5 Conclusiones del Diagnóstico</span>
             <h2>Factibilidad y Cierre del Proyecto</h2>
 
-            <div>
-                <div>
-                    <div><strong>100%</strong></div>
-                    <div>Criticidad en Método y Sistemas de Datos</div>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+                <div style="background: #e6f4ea; padding: 1rem; border-radius: 6px; flex: 1; text-align: center;">
+                    <strong style="font-size: 1.5rem; color: #0d6efd;">100%</strong><br><span style="font-size:0.85rem">Criticidad en Método y Sistemas de Datos</span>
                 </div>
-                <div>
-                    <div><strong>74%</strong></div>
-                    <div>Participación de DORMEX en su segmento</div>
+                <div style="background: #e6f4ea; padding: 1rem; border-radius: 6px; flex: 1; text-align: center;">
+                    <strong style="font-size: 1.5rem; color: #0d6efd;">74%</strong><br><span style="font-size:0.85rem">Participación de DORMEX en su segmento</span>
                 </div>
-                <div>
-                    <div><strong>94%</strong></div>
-                    <div>Criticidad en Gestión de Almacenamiento</div>
+                <div style="background: #e6f4ea; padding: 1rem; border-radius: 6px; flex: 1; text-align: center;">
+                    <strong style="font-size: 1.5rem; color: #0d6efd;">94%</strong><br><span style="font-size:0.85rem">Criticidad en Gestión de Almacenamiento</span>
                 </div>
             </div>
 
@@ -228,9 +242,9 @@
                 Se valida la factibilidad técnica de <strong>MANDARINA</strong> para migrar desde una operación reactiva hacia un modelo de previsión estandarizado, trazable y altamente competitivo.
             </p>
 
-            <!-- Enlace desplegable para ver la Criticidad de Causas (Ishikawa) -->
+            <!-- Desplegable para ver la Criticidad de Causas (Ishikawa) -->
             <details>
-                <summary>Ver detalle de Criticidad Ponderada de Causas (Ishikawa)</summary>
+                <summary>🔗 Ver detalle de Criticidad Ponderada de Causas (Ishikawa)</summary>
                 <table class="matrix-table">
                     <tr>
                         <th>Familia Causal</th>
