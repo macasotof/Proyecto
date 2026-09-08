@@ -9,71 +9,86 @@
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #04070c;
+            background-color: #03060a;
             overflow: hidden;
         }
         .slide {
-            display: none;
-            min-height: 100vh;
+            position: absolute;
+            inset: 0;
+            display: flex;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            transform: scale(0.98);
             background-size: cover;
             background-position: center;
         }
         .slide.active {
-            display: flex;
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+            z-index: 10;
         }
-        /* Fondos específicos optimizados con imágenes reales y filtro oscuro profesional */
-        .bg-slide-1 { background-image: linear-gradient(to bottom, rgba(4, 7, 12, 0.85), rgba(4, 7, 12, 0.95)), url('https://images.unsplash.com/photo-1592982537447-6f233ba3eb46?q=80&w=1600&auto=format&fit=crop'); }
-        .bg-slide-2 { background-image: linear-gradient(to bottom, rgba(4, 7, 12, 0.88), rgba(4, 7, 12, 0.96)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1600&auto=format&fit=crop'); }
-        .bg-slide-3 { background-image: linear-gradient(to bottom, rgba(4, 7, 12, 0.88), rgba(4, 7, 12, 0.96)), url('https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1600&auto=format&fit=crop'); }
-        .bg-slide-4 { background-image: linear-gradient(to bottom, rgba(4, 7, 12, 0.88), rgba(4, 7, 12, 0.96)), url('https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1600&auto=format&fit=crop'); }
-        .bg-slide-5 { background-image: linear-gradient(to bottom, rgba(4, 7, 12, 0.85), rgba(4, 7, 12, 0.95)), url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1600&auto=format&fit=crop'); }
+        /* Fondos con alta definición y filtro oscuro corporativo */
+        .bg-slide-1 { background-image: linear-gradient(to bottom, rgba(3, 6, 10, 0.82), rgba(3, 6, 10, 0.94)), url('https://images.unsplash.com/photo-1592982537447-6f233ba3eb46?q=80&w=1600&auto=format&fit=crop'); }
+        .bg-slide-2 { background-image: linear-gradient(to bottom, rgba(3, 6, 10, 0.85), rgba(3, 6, 10, 0.95)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1600&auto=format&fit=crop'); }
+        .bg-slide-3 { background-image: linear-gradient(to bottom, rgba(3, 6, 10, 0.85), rgba(3, 6, 10, 0.95)), url('https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1600&auto=format&fit=crop'); }
+        .bg-slide-4 { background-image: linear-gradient(to bottom, rgba(3, 6, 10, 0.85), rgba(3, 6, 10, 0.95)), url('https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1600&auto=format&fit=crop'); }
+        .bg-slide-5 { background-image: linear-gradient(to bottom, rgba(3, 6, 10, 0.82), rgba(3, 6, 10, 0.94)), url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1600&auto=format&fit=crop'); }
 
         .glass-card {
-            background: rgba(13, 20, 32, 0.75);
-            backdrop-filter: blur(14px);
+            background: rgba(13, 20, 32, 0.8);
+            backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .glass-card:hover {
-            border-color: rgba(52, 211, 153, 0.4);
-            transform: translateY(-2px);
+            border-color: rgba(52, 211, 153, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 30px 60px rgba(52, 211, 153, 0.1);
         }
         .glow-accent {
-            text-shadow: 0 0 20px rgba(52, 211, 153, 0.4);
+            text-shadow: 0 0 25px rgba(52, 211, 153, 0.5);
         }
     </style>
 </head>
-<body class="text-slate-100 min-h-screen select-none flex flex-col justify-between p-6 md:p-12">
+<body class="text-slate-100 min-h-screen select-none flex flex-col justify-between p-6 md:p-12 relative">
 
-    <!-- CABECERA GLOBAL CON PROGRESO INTERACTIVO -->
-    <header class="z-10 border-b border-slate-800/80 pb-4">
+    <!-- CABECERA GLOBAL INTERACTIVA -->
+    <header class="z-20 border-b border-slate-800/80 pb-4 relative">
         <div class="flex justify-between items-center mb-3">
             <div class="flex items-center space-x-3">
-                <div class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_12px_#34d399]"></div>
+                <div class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_15px_#34d399]"></div>
                 <div>
-                    <h1 class="text-xs font-bold tracking-[0.25em] text-slate-200 uppercase">Proyecto MANDARINA · Proyecto Integral</h1>
+                    <h1 class="text-xs font-bold tracking-[0.25em] text-slate-200 uppercase">MANDARINA · Proyecto Integral</h1>
                     <p class="text-[10px] text-slate-400 tracking-wider">INACAP La Granja · Ingeniería en Gestión Logística</p>
                 </div>
             </div>
-            <div class="text-right flex items-center space-x-4">
-                <span class="text-[10px] text-slate-400 hidden md:inline">Usa flechas ◄ ► para navegar</span>
-                <span id="slide-counter" class="text-xs font-mono text-emerald-400 font-semibold px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/20">01 / 05</span>
+            
+            <!-- Selector Rápido de Diapositivas (Clickeable) -->
+            <div class="flex items-center space-x-2 bg-slate-900/80 px-3 py-1.5 rounded-full border border-slate-800">
+                <span class="text-[10px] text-slate-400 mr-2 hidden md:inline">Ir a:</span>
+                <button onclick="goToSlide(0)" id="dot-0" class="w-6 h-6 rounded-full text-xs font-mono transition bg-emerald-500 text-slate-950 font-bold">1</button>
+                <button onclick="goToSlide(1)" id="dot-1" class="w-6 h-6 rounded-full text-xs font-mono transition bg-slate-800 text-slate-300 hover:bg-slate-700">2</button>
+                <button onclick="goToSlide(2)" id="dot-2" class="w-6 h-6 rounded-full text-xs font-mono transition bg-slate-800 text-slate-300 hover:bg-slate-700">3</button>
+                <button onclick="goToSlide(3)" id="dot-3" class="w-6 h-6 rounded-full text-xs font-mono transition bg-slate-800 text-slate-300 hover:bg-slate-700">4</button>
+                <button onclick="goToSlide(4)" id="dot-4" class="w-6 h-6 rounded-full text-xs font-mono transition bg-slate-800 text-slate-300 hover:bg-slate-700">5</button>
             </div>
         </div>
         <!-- Barra de Progreso Dinámica -->
-        <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden">
-            <div id="progress-bar" class="bg-emerald-400 h-full transition-all duration-500 ease-out" style="width: 20%;"></div>
+        <div class="w-full bg-slate-800/60 h-1.5 rounded-full overflow-hidden">
+            <div id="progress-bar" class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full transition-all duration-500 ease-out shadow-[0_0_10px_#34d399]" style="width: 20%;"></div>
         </div>
     </header>
 
     <!-- CONTENEDOR DE DIAPOSITIVAS -->
-    <main class="flex-grow flex items-center justify-center relative z-10 py-6">
+    <main class="flex-grow flex items-center justify-center relative z-10 my-auto">
 
         <!-- SLIDE 1: Portada -->
-        <div class="slide active bg-slide-1 flex-col justify-center w-full max-w-5xl mx-auto rounded-2xl">
-            <div class="glass-card rounded-2xl p-8 md:p-12 relative overflow-hidden">
-                <div class="absolute -right-20 -top-20 w-72 h-72 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="slide active bg-slide-1 items-center justify-center p-6">
+            <div class="glass-card rounded-2xl p-8 md:p-12 relative overflow-hidden max-w-4xl w-full">
+                <div class="absolute -right-20 -top-20 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"></div>
                 
                 <span class="inline-block py-1 px-3 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-6 border border-emerald-500/20">
                     1.1.5.1 Presentación Institucional
@@ -105,8 +120,8 @@
         </div>
 
         <!-- SLIDE 2: Diagnóstico -->
-        <div class="slide bg-slide-2 flex-col justify-center w-full max-w-5xl mx-auto rounded-2xl">
-            <div class="glass-card rounded-2xl p-8 md:p-10">
+        <div class="slide bg-slide-2 items-center justify-center p-6">
+            <div class="glass-card rounded-2xl p-8 md:p-10 max-w-4xl w-full">
                 <span class="inline-block py-1 px-3 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-4 border border-emerald-500/20">
                     1.1.5.2 Situación Actual
                 </span>
@@ -138,8 +153,8 @@
         </div>
 
         <!-- SLIDE 3: Estrategia -->
-        <div class="slide bg-slide-3 flex-col justify-center w-full max-w-5xl mx-auto rounded-2xl">
-            <div class="glass-card rounded-2xl p-8 md:p-10">
+        <div class="slide bg-slide-3 items-center justify-center p-6">
+            <div class="glass-card rounded-2xl p-8 md:p-10 max-w-4xl w-full">
                 <span class="inline-block py-1 px-3 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-4 border border-emerald-500/20">
                     1.1.5.3 Matriz de Confrontación
                 </span>
@@ -173,8 +188,8 @@
         </div>
 
         <!-- SLIDE 4: Metodología -->
-        <div class="slide bg-slide-4 flex-col justify-center w-full max-w-5xl mx-auto rounded-2xl">
-            <div class="glass-card rounded-2xl p-8 md:p-10">
+        <div class="slide bg-slide-4 items-center justify-center p-6">
+            <div class="glass-card rounded-2xl p-8 md:p-10 max-w-4xl w-full">
                 <span class="inline-block py-1 px-3 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-4 border border-emerald-500/20">
                     1.1.5.4 Metodología de Estudio
                 </span>
@@ -205,8 +220,8 @@
         </div>
 
         <!-- SLIDE 5: Conclusiones -->
-        <div class="slide bg-slide-5 flex-col justify-center w-full max-w-5xl mx-auto rounded-2xl">
-            <div class="glass-card rounded-2xl p-8 md:p-10">
+        <div class="slide bg-slide-5 items-center justify-center p-6">
+            <div class="glass-card rounded-2xl p-8 md:p-10 max-w-4xl w-full">
                 <span class="inline-block py-1 px-3 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-4 border border-emerald-500/20">
                     1.1.5.5 Conclusiones del Diagnóstico
                 </span>
@@ -236,22 +251,21 @@
     </main>
 
     <!-- PIE DE PÁGINA CON CONTROLES INTERACTIVOS -->
-    <footer class="flex justify-between items-center z-10 border-t border-slate-800/80 pt-4 text-xs text-slate-400">
+    <footer class="flex justify-between items-center z-25 border-t border-slate-800/80 pt-4 text-xs text-slate-400 relative">
         <div>
             <span class="text-emerald-400 font-medium">Proyecto Integral</span> — INACAP La Granja
         </div>
         <div class="flex items-center space-x-4">
-            <button onclick="changeSlide(-1)" class="px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 transition font-medium cursor-pointer">&larr; Anterior</button>
-            <span id="slide-indicator" class="font-mono text-emerald-400 font-bold">1 / 5</span>
-            <button onclick="changeSlide(1)" class="px-3 py-1.5 rounded bg-emerald-600 hover:bg-emerald-500 text-white transition font-medium cursor-pointer">Siguiente &rarr;</button>
+            <button onclick="changeSlide(-1)" class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition font-medium cursor-pointer border border-slate-700">&larr; Anterior</button>
+            <span id="slide-indicator" class="font-mono text-emerald-400 font-bold px-3 py-1 bg-slate-900 rounded border border-slate-800">1 / 5</span>
+            <button onclick="changeSlide(1)" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition font-medium cursor-pointer shadow-lg shadow-emerald-900/30">Siguiente &rarr;</button>
         </div>
     </footer>
 
-    <!-- SCRIPT DE NAVEGACIÓN Y PROGRESO -->
+    <!-- SCRIPT DE NAVEGACIÓN Y EFECTOS -->
     <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
-        const counter = document.getElementById('slide-counter');
         const indicator = document.getElementById('slide-indicator');
         const progressBar = document.getElementById('progress-bar');
 
@@ -259,13 +273,23 @@
             slides.forEach((s, i) => {
                 s.classList.toggle('active', i === currentSlide);
             });
-            const numText = `0${currentSlide + 1} / 05`;
-            counter.innerText = numText;
+            
+            // Actualizar indicador inferior
             indicator.innerText = `${currentSlide + 1} / 5`;
             
-            // Actualizar barra de porcentaje superior
+            // Actualizar barra superior
             const progressPercent = ((currentSlide + 1) / slides.length) * 100;
             progressBar.style.width = `${progressPercent}%`;
+
+            // Actualizar botones superiores de selección rápida
+            for (let i = 0; i < slides.length; i++) {
+                const dot = document.getElementById(`dot-${i}`);
+                if (i === currentSlide) {
+                    dot.className = "w-6 h-6 rounded-full text-xs font-mono transition bg-emerald-500 text-slate-950 font-bold shadow-[0_0_10px_#34d399]";
+                } else {
+                    dot.className = "w-6 h-6 rounded-full text-xs font-mono transition bg-slate-800 text-slate-300 hover:bg-slate-700";
+                }
+            }
         }
 
         function changeSlide(direction) {
@@ -273,6 +297,12 @@
             updateView();
         }
 
+        function goToSlide(index) {
+            currentSlide = index;
+            updateView();
+        }
+
+        // Navegación por teclado
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight' || e.key === 'Space' || e.key === 'PageDown') {
                 e.preventDefault();
@@ -284,10 +314,11 @@
             }
         });
 
+        // Navegación por rueda del ratón con control de velocidad
         let lastScroll = 0;
         document.addEventListener('wheel', (e) => {
             const now = new Date().getTime();
-            if (now - lastScroll < 600) return;
+            if (now - lastScroll < 500) return;
             lastScroll = now;
             if (e.deltaY > 0) changeSlide(1);
             else if (e.deltaY < 0) changeSlide(-1);
